@@ -1,6 +1,7 @@
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
+import 'package:abu_lafy/presentation/resources/strings_manager.dart';
+import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 
@@ -15,25 +16,49 @@ class SocialLoginCw extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return  Column(
       children: [
-        GestureDetector(
-          onTap: onTapGoogle,
-          child: SvgPicture.asset(ImageAssets.icGoogle,height: 25.h,width: 25.w),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+                width: AppSize.w89,
+                image: const AssetImage(
+                  ImageAssets.orLoginWith,
+                )),
+            Text(
+              AppStrings.orLoginWith,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Image(
+                width: AppSize.w89,
+                image: const AssetImage(
+                  ImageAssets.orLoginWith,
+                )),
+          ],
         ),
-        SizedBox(width: 36.76.w),
-        GestureDetector(
-          onTap: onTapApple,
-          child: SvgPicture.asset(ImageAssets.icApple,height: 25.h,width: 25.w)
-        ),
+        SizedBox(height: AppSize.h38,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: onTapGoogle,
+              child: SvgPicture.asset(ImageAssets.icGoogle,height: AppSize.h25,width: AppSize.w25),
+            ),
+            SizedBox(width: AppSize.w37_76),
+            GestureDetector(
+                onTap: onTapApple,
+                child: SvgPicture.asset(ImageAssets.icApple,height: AppSize.h25,width: AppSize.w25)
+            ),
 
-        SizedBox(width: 36.76.w),
-        GestureDetector(
-            onTap: onTapFacebook,
-            child: SvgPicture.asset(ImageAssets.icFacebook,height: 25.h,width: 25.w)
-        ),
+            SizedBox(width: AppSize.w37_76),
+            GestureDetector(
+                onTap: onTapFacebook,
+                child: SvgPicture.asset(ImageAssets.icFacebook,height: AppSize.h25,width: AppSize.w25)
+            ),
 
+          ],
+        )
       ],
     );
 

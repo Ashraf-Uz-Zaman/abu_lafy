@@ -1,6 +1,7 @@
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/routes_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/social_login_cw.dart';
 import 'package:flutter/material.dart';
@@ -58,9 +59,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(AppSize.s20))),
 
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.loginRoute);
+                    },
 
-                    child:  Text(AppStrings.login, style: Theme.of(context).textTheme.bodyLarge,),
+                    child:  Text(AppStrings.login, style: TextStyle(color: ColorManager.white,fontSize: 20.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold)),
                   ),
                 ),)
             ),
@@ -78,33 +81,26 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(AppSize.s20))),
 
-                      onPressed: () {},
+                      onPressed: () {
 
-                      child:  Text(AppStrings.createAccount, style: Theme.of(context).textTheme.bodyLarge,),
+                          Navigator.pushNamed(context, Routes.registerRoute);
+
+                      },
+
+                      child:  Text(AppStrings.createAccount, style: TextStyle(color: ColorManager.white,fontSize: 20.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold),
+                        ),
                     ),
                   ),
                 )
             ),
             Positioned(
                 top: 699.h,left: 0,right: 0,
-                child : Row(
-
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image( width : 89.w, image: const AssetImage(ImageAssets.orLoginWith,)),
-                    Text(AppStrings.orLoginWith, style: Theme.of(context).textTheme.titleMedium,),
-                    Image( width : 89.w, image: const AssetImage(ImageAssets.orLoginWith,)),
-                ],),
+                child : SocialLoginCw(onTapGoogle: () {  }, onTapApple: () {  }, onTapFacebook: () {  },)
 
             ),
 
 
-            Positioned(
-              top: 748.h,
-              left: 0,
-              right: 0,
-              child: SocialLoginCw(onTapGoogle: () {  }, onTapApple: () {  }, onTapFacebook: () {  },),
-            ),
+
           ]
 
         )

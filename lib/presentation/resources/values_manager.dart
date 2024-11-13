@@ -22,6 +22,22 @@ class AppPadding {
   static  double p30 = 30.0.r;
   static  double p60 = 60.0.r;
   static  double p100 = 100.0.r;
+
+  //Height
+  static  double ph_22_5 = 22.5.h;
+  static  double ph_24 = 24.h;
+
+
+
+// Width
+  static  double pw_10 = 10.w;
+  static  double pw_20 = 20.w;
+  static  double pw_22_5 = 22.5.w;
+  static  double pw_24 = 24.w;
+
+
+
+
 }
 
 class AppSize {
@@ -47,7 +63,39 @@ class AppSize {
   static  double s140 = 140.0.sp;
   static  double s180 = 180.0.sp;
   static  double s190 = 190.0.sp;
+
+  //Height
+  static  double h24 = 24.h;
+  static  double h25 = 25.h;
+  static  double h26 = 26.0.h;
+  static  double h38 = 38.0.h;
+  static  double h60 = 60.0.h;
+  static  double h186 = 186.h;
+  static  double h271 = 271.h;
+  static  double h361 = 361.h;
+  static  double h369 = 369.h;
+  static  double h456 = 456.h;
+  static  double h518 = 518.h;
+  static  double h699 = 699.h;
+
+  // Width
+  static  double w1_5 = 1.5.w;
+  static  double w23 = 23.w;
+  static  double w24 = 24.w;
+  static  double w25 = 25.w;
+  static  double w26 = 26.w;
+  static  double w28 = 28.w;
+  static  double w36 = 36.w;
+  static  double w37_76 = 36.76.w;
+  static  double w60 = 60.w;
+  static  double w89 = 89.w;
+
+  // Radius
+  static  double r20 = 20.r;
 }
+
+
+
 
 class DurationConstant{
   static const int d300 = 300;
