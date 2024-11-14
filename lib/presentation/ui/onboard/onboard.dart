@@ -36,21 +36,20 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorManager.primary,
-      body:  SafeArea(
-        child: Stack(
+      body:  Stack(
           fit: StackFit.expand,
           children: <Widget>[
             Positioned(
-              top: 82.h,
+              top: AppSize.h82,
               left: 0,
               right: 0,
               child : const Center(child: Image(image:  AssetImage(ImageAssets.onboardingLogo,)),) ,
             ),
             Positioned(
-              top: 361.h,left: 0,right: 0,
+              top: AppSize.h361,left: 0,right: 0,
                 child : Center(child: SizedBox(
-                  width: 380.w,
-                  height: 77.h,
+                  width: AppSize.w380,
+                  height: AppSize.h77,
                   child: ElevatedButton(
 
                     style:  ElevatedButton.styleFrom(
@@ -68,11 +67,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),)
             ),
             Positioned(
-                top: 473.h,left: 0,right: 0,
+                top: AppSize.h473,left: 0,right: 0,
                 child : Center(
                   child: SizedBox(
-                    width: 380.w,
-                    height: 77.h,
+                    width: AppSize.w380,
+                    height: AppSize.h77,
                     child: ElevatedButton(
 
                       style:  ElevatedButton.styleFrom(
@@ -93,18 +92,15 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   ),
                 )
             ),
-            Positioned(
-                top: 699.h,left: 0,right: 0,
-                child : SocialLoginCw(onTapGoogle: () {  }, onTapApple: () {  }, onTapFacebook: () {  },)
+             SocialLoginCw(onTapGoogle: () {  }, onTapApple: () {  }, onTapFacebook: () {  }),
 
-            ),
 
 
 
           ]
 
         )
-      )
+
     );
   }
 

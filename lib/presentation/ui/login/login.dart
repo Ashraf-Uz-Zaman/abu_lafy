@@ -88,7 +88,7 @@ class _LoginViewState extends State<LoginView> {
             child: CurveTextFormFieldCW(
                 controller: _phoneController,
                 inputType: TextInputType.phone,
-                hints: AppStrings.username,
+                hints: AppStrings.mobileNumber,
                 prefixIcon: ImageAssets.icPhone)),
         Positioned(
             top: AppSize.h369,
@@ -163,13 +163,9 @@ class _LoginViewState extends State<LoginView> {
 
                   ),
                 ])),
-        Positioned(
-          top: AppSize.h699,
-          left: 0,
-          right: 0,
-          child: SocialLoginCw(
+        SocialLoginCw(
             onTapGoogle: () {}, onTapApple: () {}, onTapFacebook: () {},),
-        ),
+
 
       ],
     );

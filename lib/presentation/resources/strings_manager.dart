@@ -29,7 +29,8 @@ class AppStrings {
 
   static const String skip = "skip";
   static const String username = "username_hint";
-  static const String mobileNumber = "mobile_number_hint";
+  static const String mobileNumber = "Mobile : 05XXXXXXXXX";
+  static const String mobileError = "mobile_number_hint";
   static const String usernameError = "invalid_user_name";
   static const String passwordError = "invalid_password";
 
