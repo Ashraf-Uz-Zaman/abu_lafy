@@ -1,32 +1,32 @@
 // to convert the response into non nullable object (model)
 
 //
+import 'package:abu_lafy/application/extensions.dart';
+import 'package:abu_lafy/data/responses/login/login_response.dart';
+import 'package:abu_lafy/data/responses/user/user_details_response.dart';
+import 'package:abu_lafy/domain/model/user_model.dart';
+
 const EMPTY = "";
 const ZERO = 0;
 
-// extension LoginResponseMapper on LoginResponse? {
-//   UserDetailsModel toDomain() {
-//     return UserDetailsModel(
-//       this?.id.orZero(),
-//       this?.name.orEmpty(),
-//       this?.email.orEmpty(),
-//       this?.password.orEmpty(),
-//       this?.mobile.orEmpty(),
-//       this?.dob.orEmpty(),
-//       this?.picture.orEmpty(),
-//       this?.level.orZero(),
-//       this?.is_approved.orEmptyBool(),
-//       this?.active_status.orZero(),
-//       this?.league_status.orZero(),
-//       this?.role.orZero(),
-//       this?.user_positions.orZero(),
-//       this?.rate.orZeroDouble(),
-//       this?.about.orEmpty(),
-//       this?.device_imei.orEmpty(),
-//       this?.device_type.orEmpty(),
-//     );
-//   }
-// }
+extension UserResponseMapper on UserDetailsResponse? {
+  UserDetailsModel toDomain() {
+    return UserDetailsModel(
+      this?.name.orEmpty() ?? EMPTY,
+      this?.phone.orEmpty() ?? EMPTY,
+      this?.emergencyContract.orEmpty() ?? EMPTY,
+      this?.dob.orEmpty() ?? EMPTY ,
+      this?.address.orEmpty() ?? EMPTY,
+      this?.latitude.orZeroDouble() ,
+      this?.longitude.orZeroDouble() ,
+      this?.country.orEmpty() ?? EMPTY,
+      this?.userType.orZero() ,
+      this?.profilePictureURL.orEmpty()?? EMPTY,
+      this?.isActive.orEmpty()?? EMPTY,
+
+    );
+  }
+}
 
 // extension RegistrationResponseMapper on RegistrationResponse? {
 //   UserDetailsModel toDomain() {

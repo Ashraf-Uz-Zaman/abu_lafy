@@ -5,7 +5,7 @@ abstract class LoginViewModelInputs {
   setPassword(String password);
   setIsPasswordVisible();
 
-  //void login(BuildContext context);
+  void login(BuildContext context);
 
   //two sinks for streams
   Sink get inputPhone;

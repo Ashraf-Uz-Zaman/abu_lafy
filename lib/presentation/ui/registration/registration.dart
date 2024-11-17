@@ -55,11 +55,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                 top: 88.h,
                 left: 23.w,
                 child:
-                Text(AppStrings.createAnAccount, style: TextStyle(
-                    color: ColorManager.white,
-                    fontSize: 40.sp,
-                    fontFamily: FontConstants.fontFamily,
-                    fontWeight: FontWeightManager.semiBold)),),
+                Text(AppStrings.createAnAccount, style: Theme.of(context).textTheme.displayLarge)),
 
 
               Positioned(

@@ -33,7 +33,7 @@ class RouteGenerator {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
       case Routes.loginRoute:
-
+        initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.otpRoute:
         return MaterialPageRoute(builder: (_) => const OtpView());

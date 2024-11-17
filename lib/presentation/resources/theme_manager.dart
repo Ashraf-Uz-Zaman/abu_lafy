@@ -57,15 +57,16 @@ ThemeData getApplicationTheme() {
 
     /// Text theme
       textTheme: TextTheme(
-        //displayLarge instead headline1
-        displayLarge: getSemiBoldStyle(
-            color: ColorManager.white, fontSize: FontSize.s40),
+
+        //displayLarge for Text
+        displayLarge: getBoldStyle(color: ColorManager.white, fontSize: FontSize.s40),
+
+
         // displayMedium instead headline2
-        displayMedium:
-            getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),
+        displayMedium: getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),
         // displaySmall instead headline3
-        displaySmall:
-            getBoldStyle(color: ColorManager.primary, fontSize: FontSize.s16),
+        displaySmall: getBoldStyle(color: ColorManager.primary, fontSize: FontSize.s16),
+
         // headlineMedium instead headline4
         headlineMedium: getRegularStyle(
             color: ColorManager.white, fontSize: FontSize.s15),

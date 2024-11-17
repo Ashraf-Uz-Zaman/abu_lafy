@@ -29,11 +29,11 @@ class CurveTextFormFieldCW extends StatelessWidget {
         enableSuggestions: obscureText == null ? true : false,
         autocorrect: false,
         autofocus: false,
-        style: TextStyle(color: ColorManager.black,fontSize: FontSize.s12, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.light),
+        style: TextStyle(color: ColorManager.black,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
         controller: controller,
         decoration: InputDecoration(
           hintText: hints,
-          hintStyle: TextStyle(color: ColorManager.hints_grey,fontSize: FontSize.s12, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.light),
+          hintStyle: TextStyle(color: ColorManager.hints_grey,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
 
           prefixIcon: prefixIcon != null ? Padding(
             padding: EdgeInsets.symmetric(vertical: AppPadding.ph_22_5,horizontal: AppPadding.pw_22_5),

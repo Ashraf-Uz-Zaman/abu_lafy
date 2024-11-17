@@ -53,11 +53,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 top: 125.h,
                 left: 26.w,
                 child: Text(AppStrings.titleForgetPassword,
-                    style: TextStyle(
-                        color: ColorManager.white,
-                        fontSize: 40.sp,
-                        fontFamily: FontConstants.fontFamily,
-                        fontWeight: FontWeightManager.bold)),
+                    style: Theme.of(context).textTheme.displayLarge)
               ),
               Positioned(
                   top: 268.h,

@@ -1,3 +1,4 @@
+import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
@@ -20,7 +21,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -75,11 +76,7 @@ class _LoginViewState extends State<LoginView> {
           top: AppSize.h186,
           left: AppSize.w23,
           child: Text(AppStrings.welcome,
-              style: TextStyle(
-                  color: ColorManager.white,
-                  fontSize: FontSize.s40,
-                  fontFamily: FontConstants.fontFamily,
-                  fontWeight: FontWeightManager.bold)),
+              style: Theme.of(context).textTheme.displayLarge),
         ),
         Positioned(
             top: AppSize.h271,
@@ -119,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
               AppStrings.forgetPassword,
               style: TextStyle(
                   color: ColorManager.white,
-                  fontSize: FontSize.s12,
+                  fontSize: FontSize.s14,
                   fontFamily: FontConstants.fontFamily,
                   fontWeight: FontWeightManager.regular),
             ),
@@ -148,7 +145,7 @@ class _LoginViewState extends State<LoginView> {
                             return IconButton(onPressed:  (snapshot.data ?? false)
                                 ? () {
                               //enable
-
+                              _viewModel.login(context);
                             }
                                 : (){
                               //disable
