@@ -45,15 +45,17 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
 
     (await _useCase.execute(
-        LoginUseCaseInput(loginObject.phone, loginObject.password,""))).fold(
+        LoginUseCaseInput(loginObject.phone, loginObject.password,"",""))).fold(
             (failure) => {
           // left -> failure
-          inputState.add(ErrorState(
-              StateRendererType.POPUP_ERROR_STATE, failure.message))
+          // inputState.add(ErrorState(
+          //     StateRendererType.POPUP_ERROR_STATE, failure.message))
+            inputState.add(ContentState()),
         }, (data) {
       // right -> success (data)
+      // inputState.add(ContentState());
       inputState.add(ContentState());
-      isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
+       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 
     });
   }

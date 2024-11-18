@@ -10,6 +10,7 @@ import 'package:abu_lafy/presentation/ui/common_widget/curve_textformfield_cw.da
 import 'package:abu_lafy/presentation/ui/common_widget/social_login_cw.dart';
 import 'package:abu_lafy/presentation/ui/login/login_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -34,7 +35,16 @@ class _LoginViewState extends State<LoginView> {
         .addListener(() => _viewModel.setPhone(_phoneController.text));
     _passwordController
         .addListener(() => _viewModel.setPassword(_passwordController.text));
-
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
+        .listen((token) {
+      // navigate to main screen
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        // _appPreferences.setUserToken(token);
+        // _appPreferences.setIsUserLoggedIn();
+        resetModules();
+       // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+      });
+    });
   }
 
   @override

@@ -34,7 +34,7 @@ class StateRenderer extends StatelessWidget {
         String? message,
         String? title,
         required this.retryActionFunction})
-      : message = message ?? AppStrings.loading.tr(),
+      : message = message ?? AppStrings.loading,
         title = title ?? EMPTY,
         super(key: key);
 
@@ -52,14 +52,14 @@ class StateRenderer extends StatelessWidget {
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok.tr(), context)
+          _getRetryButton(AppStrings.ok, context)
         ]);
       case StateRendererType.POPUP_SUCCESS:
         return _getPopUpDialog(context, [
           _getAnimatedImage(JsonAssets.success),
           _getMessage(title),
           _getMessage(message),
-          _getRetryButton(AppStrings.ok.tr(), context)
+          _getRetryButton(AppStrings.ok, context)
         ]);
       case StateRendererType.FULL_SCREEN_LOADING_STATE:
         return _getItemsInColumn(
@@ -68,7 +68,7 @@ class StateRenderer extends StatelessWidget {
         return _getItemsInColumn([
           _getAnimatedImage(JsonAssets.error),
           _getMessage(message),
-          _getRetryButton(AppStrings.retry_again.tr(), context)
+          _getRetryButton(AppStrings.retry_again, context)
         ]);
       case StateRendererType.CONTENT_SCREEN_STATE:
         return Container();
@@ -82,23 +82,9 @@ class StateRenderer extends StatelessWidget {
 
   Widget _getPopUpDialog(BuildContext context, List<Widget> children) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s14)),
-      elevation: AppSize.s1_5,
       backgroundColor: Colors.transparent,
-      child: Container(
-        decoration: BoxDecoration(
-            color: ColorManager.white,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(AppSize.s14),
-            boxShadow:  [
-              BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: AppSize.s12,
-                  offset: Offset(AppSize.s0, AppSize.s12))
-            ]),
-        child: _getDialogContent(context, children),
-      ),
+      child: _getDialogContent(context, children),
+
     );
   }
 
