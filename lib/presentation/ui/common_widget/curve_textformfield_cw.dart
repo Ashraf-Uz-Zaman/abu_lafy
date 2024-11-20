@@ -11,13 +11,14 @@ class CurveTextFormFieldCW extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType inputType;
   final String hints;
+  final String? errorText;
   final String? prefixIcon;
   final String? suffixIcon;
   final bool? obscureText;
   final GestureTapCallback? onTap;
 
 
-  const CurveTextFormFieldCW({super.key, required this.controller,required this.inputType, required this.hints, this.prefixIcon, this.suffixIcon, this.obscureText, this.onTap});
+  const CurveTextFormFieldCW({super.key, required this.controller,required this.inputType, required this.hints, this.prefixIcon, this.suffixIcon, this.obscureText, this.onTap, this.errorText});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class CurveTextFormFieldCW extends StatelessWidget {
 
 
           suffixIcon: suffixIcon != null ?
-              GestureDetector(
+              InkWell(
                 onTap: onTap,
                 child: Padding(
                     padding: EdgeInsets.only(left:AppPadding.pw_10,right: AppPadding.pw_20,top: AppPadding.ph_22_5,bottom:AppPadding.ph_22_5),
@@ -63,6 +64,10 @@ class CurveTextFormFieldCW extends StatelessWidget {
           // Background Color
           fillColor: Colors.white,
           filled: true,
+
+          errorText: errorText,
+          errorStyle: TextStyle(color: ColorManager.orange_1,fontSize: FontSize.s12, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.light),
+
 
           // Border
           border: OutlineInputBorder(

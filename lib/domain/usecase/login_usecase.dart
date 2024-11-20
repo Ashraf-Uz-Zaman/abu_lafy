@@ -25,7 +25,7 @@ class LoginUseCase implements BaseUseCase<LoginUseCaseInput, UserDetailsModel> {
       IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
       deviceType = iosInfo.model;
     }
-    return await _repository.login(LoginRequest(phone:input.phone,password: input.password, fcmToken: '', deviceImei: '', deviceType: deviceType));
+    return await _repository.login(LoginRequest(phone:input.phone,password: input.password, fcmToken: '', deviceType: deviceType));
   }
 }
 

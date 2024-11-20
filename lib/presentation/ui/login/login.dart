@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -25,7 +24,6 @@ class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
 
   // final _formKey = GlobalKey<FormState>();
 
@@ -42,7 +40,7 @@ class _LoginViewState extends State<LoginView> {
         // _appPreferences.setUserToken(token);
         // _appPreferences.setIsUserLoggedIn();
         resetModules();
-       // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
     });
   }
@@ -64,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
     // return _getContentWidget();
     return Scaffold(
         backgroundColor: ColorManager.primary,
-        body:  StreamBuilder<FlowState>(
+        body: StreamBuilder<FlowState>(
           stream: _viewModel.outputState,
           builder: (context, snapshot) {
             return snapshot.data?.getScreenWidget(context, _getContentWidget(),
@@ -73,10 +71,8 @@ class _LoginViewState extends State<LoginView> {
                 }) ??
                 _getContentWidget();
           },
-        )
-    )   ;
+        ));
   }
-
 
   Widget _getContentWidget() {
     return Stack(
@@ -89,36 +85,52 @@ class _LoginViewState extends State<LoginView> {
               style: Theme.of(context).textTheme.displayLarge),
         ),
         Positioned(
-            top: AppSize.h271,
-            left: AppSize.w24,
-            right: AppSize.w24,
-            child: CurveTextFormFieldCW(
-                controller: _phoneController,
-                inputType: TextInputType.phone,
-                hints: AppStrings.mobileNumber,
-                prefixIcon: ImageAssets.icPhone)),
+          top: AppSize.h271,
+          left: AppSize.w24,
+          right: AppSize.w24,
+          child: StreamBuilder<bool>(
+              stream: _viewModel.outputIsPhoneValid,
+              initialData: true,
+              builder: (context, snapShotPhone) {
+                return CurveTextFormFieldCW(
+                    controller: _phoneController,
+                    inputType: TextInputType.phone,
+                    hints: AppStrings.mobileNumber,
+                    errorText: snapShotPhone.data ?? true ? null: "Enter a valid phone number",
+                    prefixIcon: ImageAssets.icPhone);
+              }),
+        ),
         Positioned(
-            top: AppSize.h369,
-            left:  AppSize.w24,
-            right: AppSize.w24,
-            child:StreamBuilder<bool>(stream: _viewModel.outputIsPasswordVisible, builder:(context, snapshotbool)  {
-              return CurveTextFormFieldCW(
-                controller: _passwordController,
-                inputType: TextInputType.visiblePassword,
-                hints: AppStrings.password,
-                prefixIcon: ImageAssets.icLock,
-                suffixIcon: ImageAssets.icEye,
-                obscureText: snapshotbool.data ?? true,
-                onTap: () {
-                  _viewModel.setIsPasswordVisible();
-                },
-              );
-            }),
+          top: AppSize.h369,
+          left: AppSize.w24,
+          right: AppSize.w24,
+          child: StreamBuilder<bool>(
+              stream: _viewModel.outputIsPasswordValid,
+              initialData: true,
+              builder: (context, snapShotPassword) {
+                return    StreamBuilder<bool>(
+                    stream: _viewModel.outputIsPasswordVisible,
+                    initialData: true,
+                    builder: (context, snapShotVisible) {
+                      return CurveTextFormFieldCW(
+                        controller: _passwordController,
+                        inputType: TextInputType.visiblePassword,
+                        hints: AppStrings.password,
+                        prefixIcon: ImageAssets.icLock,
+                        suffixIcon: ImageAssets.icEye,
+                        errorText: snapShotPassword.data ?? true ? null: "Must be 6 digit",
+                        obscureText: snapShotVisible.data ?? true,
+                        onTap: () {
+                          _viewModel.setIsPasswordVisible();
+                        },
+                      );
+                    });
+              }),
         ),
         Positioned(
           top: AppSize.h456,
           right: AppSize.w36,
-          child: GestureDetector(
+          child: InkWell(
             onTap: () {
               Navigator.pushNamed(context, Routes.forgotPasswordRoute);
             },
@@ -134,8 +146,8 @@ class _LoginViewState extends State<LoginView> {
         ),
         Positioned(
             top: AppSize.h518,
-            right:  AppSize.w28,
-            left:  AppSize.w23,
+            right: AppSize.w28,
+            left: AppSize.w23,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -148,34 +160,36 @@ class _LoginViewState extends State<LoginView> {
                   SizedBox(
                       width: AppSize.w60,
                       height: AppSize.h60,
-                      child:
-                      StreamBuilder<bool>(
+                      child: StreamBuilder<bool>(
                           stream: _viewModel.outputIsAllInputsValid,
                           builder: (context, snapshot) {
-                            return IconButton(onPressed:  (snapshot.data ?? false)
-                                ? () {
-                              //enable
-                              _viewModel.login(context);
-                            }
-                                : (){
-                              //disable
-
-                            },
-                        style: IconButton.styleFrom(
-                            backgroundColor: (snapshot.data ?? false) ? ColorManager.orange_1:ColorManager.grey1),
-
-                        icon: SvgPicture.asset(
-                          ImageAssets.icArrowRight, height: AppSize.h26, width: AppSize.w26,),
-                      ); })
-
-                  ),
+                            return IconButton(
+                              onPressed: (snapshot.data ?? false)
+                                  ? () {
+                                      //enable
+                                      _viewModel.login(context);
+                                    }
+                                  : () {
+                                      //disable
+                                    },
+                              style: IconButton.styleFrom(
+                                  backgroundColor: (snapshot.data ?? false)
+                                      ? ColorManager.orange_1
+                                      : ColorManager.grey1),
+                              icon: SvgPicture.asset(
+                                ImageAssets.icArrowRight,
+                                height: AppSize.h26,
+                                width: AppSize.w26,
+                              ),
+                            );
+                          })),
                 ])),
         SocialLoginCw(
-            onTapGoogle: () {}, onTapApple: () {}, onTapFacebook: () {},),
-
-
+          onTapGoogle: () {},
+          onTapApple: () {},
+          onTapFacebook: () {},
+        ),
       ],
     );
   }
-
 }

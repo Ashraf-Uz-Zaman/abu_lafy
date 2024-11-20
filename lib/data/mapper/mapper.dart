@@ -2,12 +2,23 @@
 
 //
 import 'package:abu_lafy/application/extensions.dart';
-import 'package:abu_lafy/data/responses/login/login_response.dart';
+import 'package:abu_lafy/data/responses/base/base_response.dart';
+import 'package:abu_lafy/data/responses/common/common_response.dart';
 import 'package:abu_lafy/data/responses/user/user_details_response.dart';
+import 'package:abu_lafy/domain/model/base_model.dart';
 import 'package:abu_lafy/domain/model/user_model.dart';
 
 const EMPTY = "";
 const ZERO = 0;
+
+extension CommonResponseMapper on CommonResponse? {
+  BaseModel toDomain(){
+    return BaseModel(
+        this?.status.orZero() ?? ZERO,
+        this?.message.orEmpty() ?? EMPTY,
+        );
+  }
+}
 
 extension UserResponseMapper on UserDetailsResponse? {
   UserDetailsModel toDomain() {

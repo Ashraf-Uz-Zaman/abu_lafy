@@ -1,8 +1,10 @@
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/routes_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/curve_textformfield_cw.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/otp_cw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,7 +24,8 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   // final TextEditingController _passwordController = TextEditingController();
   // final TextEditingController _passwordConfirmController =
   //     TextEditingController();
-
+  bool isOtp = false;
+  final List<TextEditingController> _controllers = List.generate(6, (_) => TextEditingController());
 
   _bind() {
 
@@ -37,23 +40,30 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   @override
   void dispose() {
 
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     // return _getContentWidget();
+
     return  Scaffold(
         backgroundColor: ColorManager.primary,
         body: SafeArea(
-          child: Stack(
+          child: isOtp ?
+            OtpCW(controllers: _controllers, ctx: context,widgets: widget,
+            ) : Stack(
             fit: StackFit.expand,
             children: <Widget>[
               Positioned(
-                top: 125.h,
-                left: 26.w,
-                child: Text(AppStrings.titleForgetPassword,
-                    style: Theme.of(context).textTheme.displayLarge)
+                  top: 125.h,
+                  left: 26.w,
+                  child: Text(AppStrings.titleForgetPassword,
+                      style: Theme.of(context).textTheme.displayLarge)
               ),
               Positioned(
                   top: 268.h,
@@ -97,7 +107,12 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                             width: 60.w,
                             height: 60.h,
                             child:
-                            IconButton(onPressed: (){},
+                            IconButton(onPressed: (){
+                              isOtp = true;
+                              setState(() {
+
+                              });
+                            },
                               style: IconButton.styleFrom(backgroundColor: ColorManager.orange_1),
                               icon: SvgPicture.asset(ImageAssets.icArrowRight,height: 26.h,width: 26.w,),
                             )
@@ -111,79 +126,4 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
         ));
   }
 
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   // return _getContentWidget();
-  //   return Scaffold(
-  //     backgroundColor: ColorManager.white,
-  //     body: StreamBuilder<FlowState>(
-  //       stream: _viewModel.outputState,
-  //       builder: (context, snapshot) {
-  //         return snapshot.data?.getScreenWidget(context, _getContentWidget(),
-  //                 () {
-  //               // _viewModel.login();
-  //             }) ??
-  //             _getContentWidget();
-  //       },
-  //     ),
-  //   );
-  // }
-  //
-  // Widget _getContentWidget() {
-  //   return Container(
-  //     padding:  EdgeInsets.only(top: AppPadding.p100),
-  //     child: SingleChildScrollView(
-  //       child: Form(
-  //         key: _formKey,
-  //         child: Padding(
-  //           padding:  EdgeInsets.only(
-  //               left: AppPadding.p28,
-  //               right: AppPadding.p28,
-  //               top: AppPadding.p16),
-  //           child: Column(
-  //             children: <Widget>[
-  //               const Image(image: AssetImage(ImageAssets.splashLogo)),
-  //                SizedBox(
-  //                 height: AppSize.s28,
-  //               ),
-  //               InputTextWidget(
-  //                   stream: _viewModel.outputIsEmailValid,
-  //                   controller: _emailController,
-  //                   inputType: TextInputType.text,
-  //                   hints: AppStrings.username.tr(),
-  //                   error: AppStrings.usernameError),
-  //                SizedBox(
-  //                 height: AppSize.s28,
-  //               ),
-  //               InputTextWidget(
-  //                   stream: _viewModel.outputIsPasswordValid,
-  //                   controller: _passwordController,
-  //                   inputType: TextInputType.text,
-  //                   hints: AppStrings.username.tr(),
-  //                   error: AppStrings.passwordError),
-  //                SizedBox(
-  //                 height: AppSize.s28,
-  //               ),
-  //               InputTextWidget(
-  //                   stream: _viewModel.outputIsPasswordConfirmValid,
-  //                   controller: _passwordConfirmController,
-  //                   inputType: TextInputType.text,
-  //                   hints: AppStrings.username.tr(),
-  //                   error: AppStrings.passwordError),
-  //                SizedBox(
-  //                 height: AppSize.s28,
-  //               ),
-  //               ElevatedButton(
-  //                   onPressed:() {
-  //                     _viewModel.email_api();
-  //                   },
-  //                   child: const Text(AppStrings.login)),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

@@ -8,7 +8,10 @@ import 'package:abu_lafy/data/network/network_info.dart';
 import 'package:abu_lafy/data/repository/repository_impl.dart';
 import 'package:abu_lafy/domain/repository/repository.dart';
 import 'package:abu_lafy/domain/usecase/login_usecase.dart';
+import 'package:abu_lafy/domain/usecase/registration_usecase.dart';
 import 'package:abu_lafy/presentation/ui/login/login_viewmodel.dart';
+import 'package:abu_lafy/presentation/ui/registration/registration.dart';
+import 'package:abu_lafy/presentation/ui/registration/registration_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,8 +60,17 @@ initLoginModule() {
   }
 }
 
+initRegistrationModule() {
+  if (!GetIt.I.isRegistered<RegistrationUseCase>()) {
+    instance.registerFactory<RegistrationUseCase>(() => RegistrationUseCase(instance()));
+    instance.registerFactory<RegistrationViewModel>(() => RegistrationViewModel(instance()));
+
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
+  initRegistrationModule();
 }

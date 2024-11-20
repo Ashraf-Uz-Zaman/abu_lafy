@@ -38,11 +38,12 @@ class RouteGenerator {
       case Routes.otpRoute:
         return MaterialPageRoute(builder: (_) => const OtpView());
       case Routes.registerRoute:
-
+        initRegistrationModule();
         return MaterialPageRoute(builder: (_) => const RegistrationView());
-      case Routes.forgotPasswordRoute:
 
+      case Routes.forgotPasswordRoute:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+
       case Routes.confirmRoute:
 
         return MaterialPageRoute(builder: (_) => const ConfirmView());

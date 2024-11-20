@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'package:flutter/material.dart';
+import 'package:abu_lafy/algo/algo.dart';
 import 'package:abu_lafy/application/functions.dart';
 import 'package:abu_lafy/domain/usecase/login_usecase.dart';
 import 'package:abu_lafy/presentation/base/baseviewmodel.dart';
@@ -7,24 +8,26 @@ import 'package:abu_lafy/presentation/common/freezed_data_classes.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:abu_lafy/presentation/ui/login/login_interface.dart';
-import 'package:flutter/material.dart';
+
 
 
 class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, LoginViewModelOutputs {
 
+  /// --- Start --- ///
   final StreamController _phoneStreamController = StreamController<String>.broadcast();
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _isPasswordVisibleStreamController = StreamController<bool>.broadcast();
   final StreamController _isAllInputValidStreamController = StreamController<void>.broadcast();
   final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
-
   final LoginUseCase _useCase;
-
   bool isPasswordVisible = true;
+  LoginObject loginObject = LoginObject("", "","");
+  /// --- End --- ///
 
-  var loginObject = LoginObject("", "","");
 
+  /// --- Start Constructor --- ///
   LoginViewModel(this._useCase);
+  /// --- End Constructor --- ///
 
   @override
   void start() {
@@ -37,27 +40,6 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
     _passwordStreamController.close();
     _isPasswordVisibleStreamController.close();
     _isAllInputValidStreamController.close();
-  }
-
-  /// Calling api
-  @override
-  login(BuildContext context) async {
-    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-
-    (await _useCase.execute(
-        LoginUseCaseInput(loginObject.phone, loginObject.password,"",""))).fold(
-            (failure) => {
-          // left -> failure
-          // inputState.add(ErrorState(
-          //     StateRendererType.POPUP_ERROR_STATE, failure.message))
-            inputState.add(ContentState()),
-        }, (data) {
-      // right -> success (data)
-      // inputState.add(ContentState());
-      inputState.add(ContentState());
-       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
-
-    });
   }
 
 
@@ -75,32 +57,10 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
   Sink get inputIsAllInputValid => _isAllInputValidStreamController.sink;
 
 
-  // Set data
-  @override
-  setPhone(String phone) {
-    inputPhone.add(phone);
-    loginObject = loginObject.copyWith(phone: phone);
-    _validate();
-  }
-
-  @override
-  setPassword(String password) {
-    inputPassword.add(password);
-    loginObject = loginObject.copyWith(password: password);
-    _validate();
-  }
-
-  @override
-  setIsPasswordVisible() {
-    isPasswordVisible = !isPasswordVisible;
-    inputIsPasswordVisible.add(isPasswordVisible);
-  }
-
-
   // Output Stream
   @override
   Stream<bool> get outputIsPhoneValid => _phoneStreamController.stream
-      .map((phone) => isPhoneValid(phone));
+      .map((phone) => isPhoneValid(removeFirstLetter(phone)));
 
   @override
   Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream
@@ -125,5 +85,52 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
         isPhoneValid(loginObject.phone);
   }
 
+
+  /// --- Start set data --- ///
+  @override
+  setPhone(String phone) {
+    inputPhone.add(removeFirstLetter(phone));
+    loginObject = loginObject.copyWith(phone: removeFirstLetter(phone));
+    _validate();
+  }
+
+  @override
+  setPassword(String password) {
+    inputPassword.add(password);
+    loginObject = loginObject.copyWith(password: password);
+    _validate();
+  }
+
+  @override
+  setIsPasswordVisible() {
+    isPasswordVisible = !isPasswordVisible;
+    inputIsPasswordVisible.add(isPasswordVisible);
+  }
+  /// --- End set data --- ///
+
+
+
+
+  /// --- Start api --- ///
+  @override
+  login(BuildContext context) async {
+    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+
+    (await _useCase.execute(
+        LoginUseCaseInput(loginObject.phone, loginObject.password,"",""))).fold(
+            (failure) => {
+          // left -> failure
+          // inputState.add(ErrorState(
+          //     StateRendererType.POPUP_ERROR_STATE, failure.message))
+          inputState.add(ContentState()),
+        }, (data) {
+      // right -> success (data)
+      // inputState.add(ContentState());
+      inputState.add(ContentState());
+      isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
+
+    });
+  }
+  /// --- End api --- ///
 
 }
