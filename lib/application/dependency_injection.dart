@@ -7,8 +7,10 @@ import 'package:abu_lafy/data/network/dio_factory.dart';
 import 'package:abu_lafy/data/network/network_info.dart';
 import 'package:abu_lafy/data/repository/repository_impl.dart';
 import 'package:abu_lafy/domain/repository/repository.dart';
+import 'package:abu_lafy/domain/usecase/forget_usecase.dart';
 import 'package:abu_lafy/domain/usecase/login_usecase.dart';
 import 'package:abu_lafy/domain/usecase/registration_usecase.dart';
+import 'package:abu_lafy/presentation/ui/forget_password/forget_password_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/login/login_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration_viewmodel.dart';
@@ -64,6 +66,14 @@ initRegistrationModule() {
   if (!GetIt.I.isRegistered<RegistrationUseCase>()) {
     instance.registerFactory<RegistrationUseCase>(() => RegistrationUseCase(instance()));
     instance.registerFactory<RegistrationViewModel>(() => RegistrationViewModel(instance()));
+
+  }
+}
+
+initForgetPasswordModule() {
+  if (!GetIt.I.isRegistered<ForgetUseCase>()) {
+    instance.registerFactory<ForgetUseCase>(() => ForgetUseCase(instance()));
+    instance.registerFactory<ForgetViewModel>(() => ForgetViewModel(instance()));
 
   }
 }

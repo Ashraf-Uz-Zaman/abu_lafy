@@ -22,14 +22,14 @@ abstract class AppServiceClient {
       );
 
 
-  @POST("/common")
+  @POST("/registration")
   Future<CommonResponse> registration(
       @Field("Name") String name,
       @Field("Password") String password,
       @Field("Phone") String phone
       );
 
-  @POST("/forgot")
+  @POST("/forget_password")
   Future<CommonResponse> forgot(
       @Field("Phone") String phone,
       @Field("Password") String password,

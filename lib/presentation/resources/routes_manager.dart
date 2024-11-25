@@ -5,7 +5,7 @@ import 'package:abu_lafy/presentation/ui/forget_password/forget_password.dart';
 import 'package:abu_lafy/presentation/ui/login/login.dart';
 import 'package:abu_lafy/presentation/ui/main/main.dart';
 import 'package:abu_lafy/presentation/ui/onboard/onboard.dart';
-import 'package:abu_lafy/presentation/ui/otp/otp.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/otp/otp.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration.dart';
 import 'package:abu_lafy/presentation/ui/splash/splash.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -35,13 +35,12 @@ class RouteGenerator {
       case Routes.loginRoute:
         initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
-      case Routes.otpRoute:
-        return MaterialPageRoute(builder: (_) => const OtpView());
       case Routes.registerRoute:
         initRegistrationModule();
         return MaterialPageRoute(builder: (_) => const RegistrationView());
 
       case Routes.forgotPasswordRoute:
+        initForgetPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
 
       case Routes.confirmRoute:

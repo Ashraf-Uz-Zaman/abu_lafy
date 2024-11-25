@@ -15,10 +15,11 @@ class CurveTextFormFieldCW extends StatelessWidget {
   final String? prefixIcon;
   final String? suffixIcon;
   final bool? obscureText;
+  final bool? enable;
   final GestureTapCallback? onTap;
 
 
-  const CurveTextFormFieldCW({super.key, required this.controller,required this.inputType, required this.hints, this.prefixIcon, this.suffixIcon, this.obscureText, this.onTap, this.errorText});
+  const CurveTextFormFieldCW({super.key, required this.controller,required this.inputType, required this.hints, this.prefixIcon, this.suffixIcon, this.obscureText, this.onTap, this.errorText,this.enable = true});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class CurveTextFormFieldCW extends StatelessWidget {
         enableSuggestions: obscureText == null ? true : false,
         autocorrect: false,
         autofocus: false,
+        enabled: enable,
         style: TextStyle(color: ColorManager.black,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
         controller: controller,
         decoration: InputDecoration(
@@ -70,13 +72,7 @@ class CurveTextFormFieldCW extends StatelessWidget {
 
 
           // Border
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSize.r20),
-            borderSide: const BorderSide(
-              width: 0,
-              style: BorderStyle.none,
-            ),
-          ),
+          border: _getOutlineInputBorder(),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppSize.r20),
             borderSide:  BorderSide(
@@ -85,22 +81,21 @@ class CurveTextFormFieldCW extends StatelessWidget {
 
             ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSize.r20),
-            borderSide: const BorderSide(
-              width: 0,
-              style: BorderStyle.none,
-            ),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSize.r20),
-            borderSide: const BorderSide(
-              width: 0,
-              style: BorderStyle.none,
-            ),
-          ),
+          enabledBorder: _getOutlineInputBorder(),
+          errorBorder: _getOutlineInputBorder(),
         )
     );
 
   }
+
+  OutlineInputBorder _getOutlineInputBorder(){
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppSize.r20),
+      borderSide: const BorderSide(
+        width: 0,
+        style: BorderStyle.none,
+      ),
+    );
+  }
+
 }

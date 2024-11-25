@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/otp/otp_pin.dart';
 import 'package:abu_lafy/presentation/ui/forget_password/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,19 +12,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_svg/svg.dart';
 
+typedef OnCodeEnteredCompletion = void Function(String value);
 
-class OtpCW extends StatelessWidget {
-
-  void next(context){
-    FocusScope.of(context).nextFocus();
-  }
-
-  final List<TextEditingController> controllers;
-  final BuildContext ctx;
-  final ForgetPasswordView widgets;
+class OtpView extends StatefulWidget {
+  final OnCodeEnteredCompletion onSubmit;
 
 
-  const OtpCW({super.key, required this.controllers, required this.ctx,required this.widgets});
+  OtpView({super.key,required this.onSubmit,}) ;
+
+  @override
+  State<OtpView> createState() => _OtpViewState();
+}
+class _OtpViewState extends State<OtpView>  {
 
   @override
   Widget build(BuildContext context) {
@@ -95,32 +97,18 @@ class OtpCW extends StatelessWidget {
             child:
             Center(
               child:
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children:
-                List.generate(4, (index) {
-                  return Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 7.w),
-                    child: CircleOTPField1(
-                      controller: controllers[index],
-                      onChanged:(String value) {
-                        if (value.isNotEmpty && index == 3) {
+               OtpPinView(onSubmit: (String value) {
 
-                        }
-                        if (value.isNotEmpty && index < 3) {
-                          FocusScope.of(context).nextFocus();
-                        }
-                        if (value.isEmpty && index > 0) {
-                          FocusScope.of(context).previousFocus();
-                        }
-                      },
-                    ),
-                  );
-                }),
-              ),
+                        widget.onSubmit(value);
+                      }, onCodeChanged: (String value) {
 
-            )
-        ),
+                      },)
+                  )
+                ),
+
+
+
+
 
 
         Positioned(
@@ -153,54 +141,6 @@ class OtpCW extends StatelessWidget {
     );
 
   }
-}
 
 
-
-class CircleOTPField1 extends StatelessWidget {
-  final TextEditingController controller;
-
-  final ValueChanged<String> onChanged;
-
-  const CircleOTPField1({super.key,
-    required this.controller,
-    required this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: 42,width: 42,
-      child: TextField(
-        controller: controller,
-        onChanged: onChanged,
-
-        style: TextStyle(color: ColorManager.primary,fontSize: 20.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold),
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(1),
-          FilteringTextInputFormatter.digitsOnly,
-        ],
-
-        decoration: InputDecoration(
-          counterText: "", // Hide the counter text (maxLength label)
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: EdgeInsets.all(10.r),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50.r), // Circular shape
-            borderSide: BorderSide(color: ColorManager.dark_brown_1, width: 1.5.r),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50.r),
-            borderSide: BorderSide(color: ColorManager.orange_1, width: 1.5.r),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50.r),
-            borderSide: BorderSide(color: ColorManager.dark_brown_1, width: 1.5.r),
-          ),
-        ),
-      ),
-    );
-  }
 }

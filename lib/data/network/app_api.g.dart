@@ -80,7 +80,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/common',
+              '/registration',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -113,7 +113,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/forgot',
+              '/forget_password',
               queryParameters: queryParameters,
               data: _data,
             )
