@@ -40,6 +40,7 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
     _passwordStreamController.close();
     _isPasswordVisibleStreamController.close();
     _isAllInputValidStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
 

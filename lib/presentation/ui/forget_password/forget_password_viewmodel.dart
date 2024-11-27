@@ -126,6 +126,8 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
 
     });
   }
+  /// --- End api --- ///
+
 
 
 
@@ -159,9 +161,6 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
     isVerified = value;
     inputIsVerified.add(value);
   }
-  /// --- End api --- ///
-///
-///
 
 
 

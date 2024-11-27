@@ -78,9 +78,20 @@ class CurveTextFormFieldCW extends StatelessWidget {
             borderSide:  BorderSide(
               width: AppSize.w1_5,
               color: ColorManager.orange_1,
+              style: BorderStyle.solid
 
             ),
           ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSize.r20),
+            borderSide:  BorderSide(
+                width: AppSize.w1_5,
+                color: ColorManager.orange_1,
+                style: BorderStyle.solid
+
+            ),
+          ),
+          disabledBorder:  _getOutlineInputBorder(),
           enabledBorder: _getOutlineInputBorder(),
           errorBorder: _getOutlineInputBorder(),
         )

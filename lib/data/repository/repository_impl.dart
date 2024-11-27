@@ -23,7 +23,7 @@ class RepositoryImpl extends Repository {
     if (await _networkInfo.isConnected) {
     try {
       final response = await _remoteDataSource.login(request);
-      if (response.status == ApiInternalStatus.SUCCESS) {
+      if (response.status == 200) {
         return Right(response.data.toDomain());
       } else {
         return Left(Failure( response.status ?? 0,response.message ?? ResponseMessage.DEFAULT));

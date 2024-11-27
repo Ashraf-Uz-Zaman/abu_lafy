@@ -36,11 +36,13 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((token) {
       // navigate to main screen
+      print("Token 1: "+token);
       SchedulerBinding.instance.addPostFrameCallback((_) {
         // _appPreferences.setUserToken(token);
         // _appPreferences.setIsUserLoggedIn();
         resetModules();
-        // Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        print("Token 2: "+token);
+         Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
     });
   }
@@ -167,7 +169,8 @@ class _LoginViewState extends State<LoginView> {
                               onPressed: (snapshot.data ?? false)
                                   ? () {
                                       //enable
-                                      _viewModel.login(context);
+                                     // _viewModel.login(context);
+                                Navigator.pushReplacementNamed(context, Routes.mainRoute);
                                     }
                                   : () {
                                       //disable
@@ -191,5 +194,6 @@ class _LoginViewState extends State<LoginView> {
         ),
       ],
     );
+
   }
 }

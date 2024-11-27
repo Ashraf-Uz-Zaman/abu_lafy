@@ -23,6 +23,21 @@ class ImageAssets {
   static const String icConfirm = "$IMAGE_PATH/confirm_vector.svg";
 
   static const String appbarLogo = "$IMAGE_PATH/appbar_logo.png";
+  static const String icCamera = "$IMAGE_PATH/camera_vector.svg";
+  static const String icDot = "$IMAGE_PATH/dot_vector.svg";
+  static const String icHome = "$IMAGE_PATH/home_vector.svg";
+  static const String icActiveHome = "$IMAGE_PATH/active_home_vector.svg";
+  static const String icEvent = "$IMAGE_PATH/event_vector.svg";
+  static const String icActiveEvent = "$IMAGE_PATH/active_event_vector.svg";
+  static const String icPerformance = "$IMAGE_PATH/performance_vector.svg";
+  static const String icActivePerformance = "$IMAGE_PATH/active_performance_vector.svg";
+  static const String icProfile = "$IMAGE_PATH/profile_vector.svg";
+  static const String icActiveProfile = "$IMAGE_PATH/active_profile_vector.svg";
+  static const String icPlusCircle = "$IMAGE_PATH/plus_circle_vector.svg";
+  static const String icActivePlusCircle = "$IMAGE_PATH/active_plus_circle_vector.svg";
+  static const String icLike = "$IMAGE_PATH/like_vector.svg";
+  static const String icDislike = "$IMAGE_PATH/dislike_vector.svg";
+
 
 
 }
