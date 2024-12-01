@@ -4,6 +4,7 @@ import 'package:abu_lafy/data/network/error_handler.dart';
 import 'package:abu_lafy/data/network/failure.dart';
 import 'package:abu_lafy/data/network/network_info.dart';
 import 'package:abu_lafy/domain/model/base_model.dart';
+import 'package:abu_lafy/domain/model/post_model.dart';
 import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/domain/repository/repository.dart';
 import 'package:abu_lafy/domain/request/request.dart';
@@ -73,4 +74,22 @@ class RepositoryImpl extends Repository {
     }
   }
 
+
+  @override
+  Future<Either<Failure, List<PostModel>>> home(HomeRequest request) async{
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.home(request);
+        if (response.status == 200) {
+          return Right((response.data?.map((e) => e.toDomain()) ?? []).cast<PostModel>().toList());
+        } else {
+          return Left(Failure( response.status ?? 0,response.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return (Left(ErrorHandler.handle(error).failure));
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

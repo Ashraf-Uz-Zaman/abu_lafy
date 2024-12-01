@@ -3,8 +3,10 @@ import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/main/event/event.dart';
 import 'package:abu_lafy/presentation/ui/main/home/home.dart';
+import 'package:abu_lafy/presentation/ui/main/profile/profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,23 +20,36 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  List<Widget> pages = [
-    const HomeView(),
+  late final HomeView _homeView;
+  late final EventView _eventView;
+  late final ProfileView _profileView;
+  late  List<Widget> pages = [];
 
-    const Center(
-      child: Text("Message"),
-    ),
-    const EventView(),
-    const Center(
-      child: Text("Notifiaction"),
-    ),
-    const Center(
-      child: Text("Setting"),
-    ),
-    // SearchPage(),
-    // NotificationsPage(),
-    // SettingsPage()
-  ];
+  @override
+  void initState() {
+    _homeView = const HomeView();
+    _eventView = const EventView();
+    _profileView = const ProfileView();
+    pages = [
+      _homeView,
+
+      const Center(
+        child: Text("Message"),
+      ),
+      _eventView,
+     const Center(
+        child: Text("Notifiaction"),
+      ),
+      _profileView
+    ];
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 
   var _title = AppStrings.home.tr();
   var _currentIndex = 0;
@@ -59,7 +74,7 @@ class _MainViewState extends State<MainView> {
                       fontWeight: FontWeightManager.regular)),
               Padding(
                 padding: EdgeInsets.only(left: 15.w, right: 20.w),
-                child: const Image(image: AssetImage(ImageAssets.appbarLogo)),
+                child: getCircularCacheImage( "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyvetnLOz5AF4JPJGxqw0EJpwpBHl9swwqww&s",50.h,50.w),
               ),
             ],
           )

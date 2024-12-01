@@ -28,3 +28,12 @@ class ForgotRequest {
   ForgotRequest({required this.phone,required this.password});
 }
 
+class HomeRequest {
+  int user_id;
+  String content;
+  bool is_image;
+
+
+
+  HomeRequest({required this.user_id,required this.content,required this.is_image});
+}

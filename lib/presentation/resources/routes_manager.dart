@@ -42,11 +42,10 @@ class RouteGenerator {
       case Routes.forgotPasswordRoute:
         initForgetPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
-
       case Routes.confirmRoute:
-
         return MaterialPageRoute(builder: (_) => const ConfirmView());
       case Routes.mainRoute:
+        initHomeModule();
 
         return MaterialPageRoute(builder: (_) => const MainView());
 

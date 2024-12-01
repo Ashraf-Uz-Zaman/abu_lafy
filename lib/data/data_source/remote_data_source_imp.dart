@@ -1,6 +1,7 @@
 import 'package:abu_lafy/data/data_source/remote_data_source.dart';
 import 'package:abu_lafy/data/network/app_api.dart';
 import 'package:abu_lafy/data/responses/base/base_response.dart';
+import 'package:abu_lafy/data/responses/home/home_response.dart';
 import 'package:abu_lafy/data/responses/login/login_response.dart';
 import 'package:abu_lafy/data/responses/common/common_response.dart';
 import 'package:abu_lafy/domain/request/request.dart';
@@ -30,6 +31,11 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
   @override
   Future<CommonResponse> forgot(ForgotRequest request) async{
     return await _appServiceClient.forgot(request.phone, request.password );
+  }
+
+  @override
+  Future<HomeResponse> home(HomeRequest request) async{
+    return await _appServiceClient.home(request.user_id, request.content,request.is_image );
   }
 
 }

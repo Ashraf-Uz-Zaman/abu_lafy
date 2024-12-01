@@ -487,3 +487,165 @@ abstract class _ForgetObject implements ForgetObject {
   _$$ForgetObjectImplCopyWith<_$ForgetObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$HomeObject {
+  int get userId => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  bool get isImage => throw _privateConstructorUsedError;
+
+  /// Create a copy of HomeObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $HomeObjectCopyWith<HomeObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HomeObjectCopyWith<$Res> {
+  factory $HomeObjectCopyWith(
+          HomeObject value, $Res Function(HomeObject) then) =
+      _$HomeObjectCopyWithImpl<$Res, HomeObject>;
+  @useResult
+  $Res call({int userId, String content, bool isImage});
+}
+
+/// @nodoc
+class _$HomeObjectCopyWithImpl<$Res, $Val extends HomeObject>
+    implements $HomeObjectCopyWith<$Res> {
+  _$HomeObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of HomeObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? content = null,
+    Object? isImage = null,
+  }) {
+    return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      isImage: null == isImage
+          ? _value.isImage
+          : isImage // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HomeObjectImplCopyWith<$Res>
+    implements $HomeObjectCopyWith<$Res> {
+  factory _$$HomeObjectImplCopyWith(
+          _$HomeObjectImpl value, $Res Function(_$HomeObjectImpl) then) =
+      __$$HomeObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int userId, String content, bool isImage});
+}
+
+/// @nodoc
+class __$$HomeObjectImplCopyWithImpl<$Res>
+    extends _$HomeObjectCopyWithImpl<$Res, _$HomeObjectImpl>
+    implements _$$HomeObjectImplCopyWith<$Res> {
+  __$$HomeObjectImplCopyWithImpl(
+      _$HomeObjectImpl _value, $Res Function(_$HomeObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? content = null,
+    Object? isImage = null,
+  }) {
+    return _then(_$HomeObjectImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == isImage
+          ? _value.isImage
+          : isImage // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HomeObjectImpl implements _HomeObject {
+  _$HomeObjectImpl(this.userId, this.content, this.isImage);
+
+  @override
+  final int userId;
+  @override
+  final String content;
+  @override
+  final bool isImage;
+
+  @override
+  String toString() {
+    return 'HomeObject(userId: $userId, content: $content, isImage: $isImage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HomeObjectImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.isImage, isImage) || other.isImage == isImage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId, content, isImage);
+
+  /// Create a copy of HomeObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeObjectImplCopyWith<_$HomeObjectImpl> get copyWith =>
+      __$$HomeObjectImplCopyWithImpl<_$HomeObjectImpl>(this, _$identity);
+}
+
+abstract class _HomeObject implements HomeObject {
+  factory _HomeObject(
+          final int userId, final String content, final bool isImage) =
+      _$HomeObjectImpl;
+
+  @override
+  int get userId;
+  @override
+  String get content;
+  @override
+  bool get isImage;
+
+  /// Create a copy of HomeObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$HomeObjectImplCopyWith<_$HomeObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

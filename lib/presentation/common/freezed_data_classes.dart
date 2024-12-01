@@ -16,3 +16,8 @@ class RegistrationObject with _$RegistrationObject {
 class ForgetObject with _$ForgetObject {
   factory ForgetObject(String phone, String password) = _ForgetObject;
 }
+
+@freezed
+class HomeObject with _$HomeObject {
+  factory HomeObject(int userId, String content, bool isImage) = _HomeObject;
+}

@@ -29,7 +29,6 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
 
   final List<TextEditingController> _controllers =
       List.generate(4, (_) => TextEditingController());
-  Timer? _timer;
 
   _bind() {
     _viewModel.start();
