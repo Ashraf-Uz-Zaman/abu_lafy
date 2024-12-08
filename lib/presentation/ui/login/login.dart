@@ -5,6 +5,7 @@ import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/routes_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
+import 'package:abu_lafy/presentation/resources/styles_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/curve_textformfield_cw.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/social_login_cw.dart';
@@ -36,12 +37,12 @@ class _LoginViewState extends State<LoginView> {
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((token) {
       // navigate to main screen
-      print("Token 1: "+token);
+
       SchedulerBinding.instance.addPostFrameCallback((_) {
         // _appPreferences.setUserToken(token);
         // _appPreferences.setIsUserLoggedIn();
         resetModules();
-        print("Token 2: "+token);
+
          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
       });
     });
@@ -154,11 +155,8 @@ class _LoginViewState extends State<LoginView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(AppStrings.signIn,
-                      style: TextStyle(
-                          color: ColorManager.white,
-                          fontSize: FontSize.s25,
-                          fontFamily: FontConstants.fontFamily,
-                          fontWeight: FontWeightManager.bold)),
+                      style: getTextStyleBold(fontSize: FontSize.s25)),
+
                   SizedBox(
                       width: AppSize.w60,
                       height: AppSize.h60,
@@ -169,8 +167,8 @@ class _LoginViewState extends State<LoginView> {
                               onPressed: (snapshot.data ?? false)
                                   ? () {
                                       //enable
-                                     // _viewModel.login(context);
-                                Navigator.pushReplacementNamed(context, Routes.mainRoute);
+                                      _viewModel.login(context);
+                               // Navigator.pushReplacementNamed(context, Routes.mainRoute);
                                     }
                                   : () {
                                       //disable

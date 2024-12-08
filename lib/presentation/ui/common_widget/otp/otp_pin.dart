@@ -84,13 +84,15 @@ class _OtpPinViewState extends State<OtpPinView> {
     return
       Padding(
           padding:  EdgeInsets.symmetric(horizontal: 7.w),
-          child: SizedBox(height: 45.h,width: 45.w,
+          child: SizedBox(height: 50.h,width: 50.w,
             child: TextFormField(
               showCursor: true,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
               maxLength: 1,
               readOnly: false,
+              autocorrect: false,
+              enableSuggestions: false,
               style: TextStyle(color: ColorManager.primary,fontSize: 14.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold),
               autofocus: true,
               cursorColor: ColorManager.orange_1,

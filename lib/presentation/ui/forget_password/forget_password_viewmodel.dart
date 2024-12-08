@@ -8,8 +8,11 @@ import 'package:abu_lafy/presentation/base/baseviewmodel.dart';
 import 'package:abu_lafy/presentation/common/freezed_data_classes.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/forget_password/forget_password_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, ForgetViewModelOutputs {
 
@@ -25,7 +28,6 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
   bool isPasswordVisible = true;
   bool isVerified = false;
   bool isOtp = false;
-   List<bool> controllers_enable = List.generate(4, (value) =>  value == 0 ? true : false);
   ForgetObject _object = ForgetObject("", "");
   /// --- End --- ///
 
@@ -37,7 +39,6 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
   @override
   void start() {
     inputState.add(ContentState());
-    _object = _object.copyWith(password: "123456");
   }
 
   @override
@@ -109,7 +110,9 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
   /// --- Start api --- ///
   @override
   void forget(BuildContext context) async {
+    FocusManager.instance.primaryFocus?.unfocus();
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
+
 
     (await _useCase.execute(
         ForgotUseCaseInput(_object.phone, _object.password))).fold(
@@ -118,10 +121,14 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
           // inputState.add(ErrorState(
           //     StateRendererType.POPUP_ERROR_STATE, failure.message))
           inputState.add(ContentState()),
+              getFailToast( "${failure.status}  ${failure.message}"),
         }, (data) {
       // right -> success (data)
       // inputState.add(ContentState());
       inputState.add(ContentState());
+
+    getSucessToast();
+      resetValue();
       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 
     });
@@ -157,9 +164,17 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
 
   @override
   setIsVerified(bool value) {
-    print("fucking Value  ${value}");
     isVerified = value;
     inputIsVerified.add(value);
+  }
+
+
+
+  resetValue(){
+    _object = _object.copyWith(phone: '',password: '');
+    setIsOtp(false);
+    setIsVerified(false);
+
   }
 
 

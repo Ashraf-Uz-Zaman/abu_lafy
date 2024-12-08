@@ -4,7 +4,8 @@ class AppStrings {
   static const String login = "LOGIN";
   static const String orLoginWith = "  Or Login With  ";
   static const String welcome = "WELCOME";
-  static const String password = "password";
+  static const String password = "Password";
+  static const String confirmPassword = "Confirm Password";
   static const String forgetPassword = "Forgot Password?";
   static const String signIn = "Sign In";
   static const String otpVerification = "OTP Verification";
@@ -28,7 +29,7 @@ class AppStrings {
 
 
   static const String skip = "skip";
-  static const String username = "username_hint";
+  static const String username = "Username";
   static const String mobileNumber = "Mobile : 05XXXXXXXXX";
   static const String mobileError = "mobile_number_hint";
   static const String usernameError = "invalid_user_name";

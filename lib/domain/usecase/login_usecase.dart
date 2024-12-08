@@ -8,13 +8,13 @@ import 'package:abu_lafy/domain/usecase/base_usercase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
-class LoginUseCase implements BaseUseCase<LoginUseCaseInput, UserDetailsModel> {
+class LoginUseCase implements BaseUseCase<LoginUseCaseInput, UserModel> {
   final Repository _repository;
 
   LoginUseCase(this._repository);
 
   @override
-  Future<Either<Failure, UserDetailsModel>> execute(
+  Future<Either<Failure, UserModel>> execute(
       LoginUseCaseInput input) async {
     String deviceType = "";
     DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();

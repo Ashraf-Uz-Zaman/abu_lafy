@@ -1,5 +1,8 @@
+import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 TextStyle _getTextStyle(
     double fontSize, String fontFamily, FontWeight fontWeight, Color color) {
@@ -50,3 +53,24 @@ TextStyle getBoldStyle(
 }
 
 
+
+ButtonStyle getElevationButtonStyle({required Color bgColor}) {
+  return ElevatedButton.styleFrom(
+      minimumSize: Size(AppSize.w380,  AppSize.h77),
+      backgroundColor: bgColor,
+      shape: RoundedRectangleBorder(
+        side:BorderSide.none,
+        borderRadius: BorderRadius.circular(20.r),));
+}
+
+TextStyle getElevationButtonTextStyle() {
+  return _getTextStyle(FontSize.s20, FontConstants.fontFamily, FontWeightManager.bold, ColorManager.white);
+}
+
+TextStyle getTextStyleBold({required double fontSize}) {
+  return _getTextStyle(fontSize, FontConstants.fontFamily, FontWeightManager.bold, ColorManager.white);
+}
+
+TextStyle getErrorTextStyle() {
+  return _getTextStyle(13.sp, FontConstants.fontFamily, FontWeightManager.light, Colors.red);
+}

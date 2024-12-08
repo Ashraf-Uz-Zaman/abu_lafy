@@ -32,11 +32,11 @@ class CurveTextFormFieldCW extends StatelessWidget {
         autocorrect: false,
         autofocus: false,
         enabled: enable,
+
         style: TextStyle(color: ColorManager.black,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
         controller: controller,
         decoration: InputDecoration(
           hintText: hints,
-          hintStyle: TextStyle(color: ColorManager.hints_grey,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
 
           prefixIcon: prefixIcon != null ? Padding(
             padding: EdgeInsets.symmetric(vertical: AppPadding.ph_22_5,horizontal: AppPadding.pw_22_5),
@@ -68,45 +68,15 @@ class CurveTextFormFieldCW extends StatelessWidget {
           filled: true,
 
           errorText: errorText,
-          errorStyle: TextStyle(color: ColorManager.orange_1,fontSize: FontSize.s12, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.light),
 
 
-          // Border
-          border: _getOutlineInputBorder(),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSize.r20),
-            borderSide:  BorderSide(
-              width: AppSize.w1_5,
-              color: ColorManager.orange_1,
-              style: BorderStyle.solid
 
-            ),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppSize.r20),
-            borderSide:  BorderSide(
-                width: AppSize.w1_5,
-                color: ColorManager.orange_1,
-                style: BorderStyle.solid
 
-            ),
-          ),
-          disabledBorder:  _getOutlineInputBorder(),
-          enabledBorder: _getOutlineInputBorder(),
-          errorBorder: _getOutlineInputBorder(),
-        )
-    );
+    ));
 
   }
 
-  OutlineInputBorder _getOutlineInputBorder(){
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(AppSize.r20),
-      borderSide: const BorderSide(
-        width: 0,
-        style: BorderStyle.none,
-      ),
-    );
-  }
+
+
 
 }

@@ -14,6 +14,7 @@ import 'package:abu_lafy/domain/usecase/registration_usecase.dart';
 import 'package:abu_lafy/presentation/ui/forget_password/forget_password_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/login/login_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/main/home/home_viewmodel.dart';
+import 'package:abu_lafy/presentation/ui/main/main_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration_viewmodel.dart';
 import 'package:get_it/get_it.dart';
@@ -78,6 +79,12 @@ initForgetPasswordModule() {
     instance.registerFactory<ForgetViewModel>(() => ForgetViewModel(instance()));
 
   }
+}
+
+initMainModule() {
+
+    instance.registerFactory<MainViewModel>(() => MainViewModel());
+
 }
 
 

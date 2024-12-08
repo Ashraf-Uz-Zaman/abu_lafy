@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:abu_lafy/application/app_preferences.dart';
+import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:abu_lafy/algo/algo.dart';
 import 'package:abu_lafy/application/functions.dart';
@@ -22,6 +24,7 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
   final LoginUseCase _useCase;
   bool isPasswordVisible = true;
   LoginObject loginObject = LoginObject("", "","");
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   /// --- End --- ///
 
 
@@ -128,6 +131,8 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
       // right -> success (data)
       // inputState.add(ContentState());
       inputState.add(ContentState());
+      _appPreferences.setUser(data);
+      _appPreferences.setIsUserLoggedIn(true);
       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 
     });

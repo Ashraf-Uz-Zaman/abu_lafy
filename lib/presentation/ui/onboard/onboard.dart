@@ -1,11 +1,13 @@
+
+
+import 'package:abu_lafy/application/app_preferences.dart';
+import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
-import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/routes_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/social_login_cw.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 import '../../resources/styles_manager.dart';
@@ -47,38 +49,25 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
             Positioned(
               top: AppSize.h361,left: 0,right: 0,
-                child : Center(child: SizedBox(
-                  width: AppSize.w380,
-                  height: AppSize.h77,
-                  child: ElevatedButton(
+                child : Center(child:  ElevatedButton(
 
-                    style:  ElevatedButton.styleFrom(
-                        textStyle: getRegularStyle(fontSize: FontSize.s20, color: ColorManager.white),
-                        backgroundColor: ColorManager.orange_1,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(AppSize.s20))),
+                    style:  getElevationButtonStyle( bgColor: ColorManager.orange_1),
 
                     onPressed: () {
+
                       Navigator.pushNamed(context, Routes.loginRoute);
                     },
 
-                    child:  Text(AppStrings.login, style: TextStyle(color: ColorManager.white,fontSize: 20.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold)),
+                    child:  Text(AppStrings.login, style: getElevationButtonTextStyle()),
                   ),
-                ),)
+                ),
             ),
             Positioned(
                 top: AppSize.h473,left: 0,right: 0,
                 child : Center(
-                  child: SizedBox(
-                    width: AppSize.w380,
-                    height: AppSize.h77,
-                    child: ElevatedButton(
+                  child: ElevatedButton(
 
-                      style:  ElevatedButton.styleFrom(
-                          textStyle: getRegularStyle(fontSize: FontSize.s20, color: ColorManager.white),
-                          backgroundColor: ColorManager.navyBlue_1,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(AppSize.s20))),
+                      style:  getElevationButtonStyle( bgColor: ColorManager.navyBlue_1),
 
                       onPressed: () {
 
@@ -86,14 +75,13 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
                       },
 
-                      child:  Text(AppStrings.createAccount, style: TextStyle(color: ColorManager.white,fontSize: 20.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.bold),
+                      child:  Text(AppStrings.createAccount, style: getElevationButtonTextStyle(),
                         ),
                     ),
-                  ),
+
                 )
             ),
              SocialLoginCw(onTapGoogle: () {  }, onTapApple: () {  }, onTapFacebook: () {  }),
-
 
 
 

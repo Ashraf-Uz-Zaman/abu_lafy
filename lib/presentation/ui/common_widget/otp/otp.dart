@@ -31,31 +31,23 @@ class _OtpViewState extends State<OtpView>  {
       fit: StackFit.expand,
       children: <Widget>[
         Positioned(
-          top: 115.h,left: 0,right: 0,
+          top: 85.h,left: 0,right: 0,
           child :
-          Center(child: SvgPicture.asset(ImageAssets.icOtp,height: 245.h,width: 207.w,),),
+          Center(child: SvgPicture.asset(ImageAssets.icOtp,height: 200 .h,width: 169.w,),),
         ),
 
         Positioned(
-            top: 387.h,
+            top: 337.h,
             left: 0,
             right: 0,
             child:
             Center(
-                child: Text(AppStrings.otpVerification, style: TextStyle(color: ColorManager.white,fontSize: 40.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.semiBold))
+                child: Text(AppStrings.otpVerification, style: TextStyle(color: ColorManager.white,fontSize: 37.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.semiBold))
             )),
 
-        Positioned(
-            top: 387.h,
-            left: 0,
-            right: 0,
-            child:
-            Center(
-                child: Text(AppStrings.otpVerification, style: TextStyle(color: ColorManager.white,fontSize: 40.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.semiBold))
-            )),
 
         Positioned(
-            top: 507.h,
+            top: 415.h,
             left: 0,
             right: 0,
             child:
@@ -91,7 +83,7 @@ class _OtpViewState extends State<OtpView>  {
 
 
         Positioned(
-            top: 607.h,
+            top: 515.h,
             left: 0,
             right: 0,
             child:
@@ -112,7 +104,7 @@ class _OtpViewState extends State<OtpView>  {
 
 
         Positioned(
-            top: 698.h,
+            top: 606.h,
             left: 0,
             right: 0,
             child:

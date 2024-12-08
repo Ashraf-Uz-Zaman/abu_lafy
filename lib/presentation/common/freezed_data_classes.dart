@@ -9,7 +9,7 @@ class LoginObject with _$LoginObject {
 
 @freezed
 class RegistrationObject with _$RegistrationObject {
-  factory RegistrationObject(String name, String password, String phone) = _RegistrationObject;
+  factory RegistrationObject({required String name,required String password,required String confirmPassword,required bool passwordVisible,required bool confirmPasswordVisible,required String phone,required bool isOtp}) = _RegistrationObject;
 }
 
 @freezed

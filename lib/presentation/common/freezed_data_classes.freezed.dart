@@ -182,7 +182,11 @@ abstract class _LoginObject implements LoginObject {
 mixin _$RegistrationObject {
   String get name => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  String get confirmPassword => throw _privateConstructorUsedError;
+  bool get passwordVisible => throw _privateConstructorUsedError;
+  bool get confirmPasswordVisible => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  bool get isOtp => throw _privateConstructorUsedError;
 
   /// Create a copy of RegistrationObject
   /// with the given fields replaced by the non-null parameter values.
@@ -197,7 +201,14 @@ abstract class $RegistrationObjectCopyWith<$Res> {
           RegistrationObject value, $Res Function(RegistrationObject) then) =
       _$RegistrationObjectCopyWithImpl<$Res, RegistrationObject>;
   @useResult
-  $Res call({String name, String password, String phone});
+  $Res call(
+      {String name,
+      String password,
+      String confirmPassword,
+      bool passwordVisible,
+      bool confirmPasswordVisible,
+      String phone,
+      bool isOtp});
 }
 
 /// @nodoc
@@ -217,7 +228,11 @@ class _$RegistrationObjectCopyWithImpl<$Res, $Val extends RegistrationObject>
   $Res call({
     Object? name = null,
     Object? password = null,
+    Object? confirmPassword = null,
+    Object? passwordVisible = null,
+    Object? confirmPasswordVisible = null,
     Object? phone = null,
+    Object? isOtp = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -228,10 +243,26 @@ class _$RegistrationObjectCopyWithImpl<$Res, $Val extends RegistrationObject>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      passwordVisible: null == passwordVisible
+          ? _value.passwordVisible
+          : passwordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      confirmPasswordVisible: null == confirmPasswordVisible
+          ? _value.confirmPasswordVisible
+          : confirmPasswordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      isOtp: null == isOtp
+          ? _value.isOtp
+          : isOtp // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -244,7 +275,14 @@ abstract class _$$RegistrationObjectImplCopyWith<$Res>
       __$$RegistrationObjectImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String password, String phone});
+  $Res call(
+      {String name,
+      String password,
+      String confirmPassword,
+      bool passwordVisible,
+      bool confirmPasswordVisible,
+      String phone,
+      bool isOtp});
 }
 
 /// @nodoc
@@ -262,21 +300,41 @@ class __$$RegistrationObjectImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? password = null,
+    Object? confirmPassword = null,
+    Object? passwordVisible = null,
+    Object? confirmPasswordVisible = null,
     Object? phone = null,
+    Object? isOtp = null,
   }) {
     return _then(_$RegistrationObjectImpl(
-      null == name
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      null == password
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      null == phone
+      confirmPassword: null == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String,
+      passwordVisible: null == passwordVisible
+          ? _value.passwordVisible
+          : passwordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      confirmPasswordVisible: null == confirmPasswordVisible
+          ? _value.confirmPasswordVisible
+          : confirmPasswordVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      isOtp: null == isOtp
+          ? _value.isOtp
+          : isOtp // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -284,18 +342,33 @@ class __$$RegistrationObjectImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RegistrationObjectImpl implements _RegistrationObject {
-  _$RegistrationObjectImpl(this.name, this.password, this.phone);
+  _$RegistrationObjectImpl(
+      {required this.name,
+      required this.password,
+      required this.confirmPassword,
+      required this.passwordVisible,
+      required this.confirmPasswordVisible,
+      required this.phone,
+      required this.isOtp});
 
   @override
   final String name;
   @override
   final String password;
   @override
+  final String confirmPassword;
+  @override
+  final bool passwordVisible;
+  @override
+  final bool confirmPasswordVisible;
+  @override
   final String phone;
+  @override
+  final bool isOtp;
 
   @override
   String toString() {
-    return 'RegistrationObject(name: $name, password: $password, phone: $phone)';
+    return 'RegistrationObject(name: $name, password: $password, confirmPassword: $confirmPassword, passwordVisible: $passwordVisible, confirmPasswordVisible: $confirmPasswordVisible, phone: $phone, isOtp: $isOtp)';
   }
 
   @override
@@ -306,11 +379,19 @@ class _$RegistrationObjectImpl implements _RegistrationObject {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword) &&
+            (identical(other.passwordVisible, passwordVisible) ||
+                other.passwordVisible == passwordVisible) &&
+            (identical(other.confirmPasswordVisible, confirmPasswordVisible) ||
+                other.confirmPasswordVisible == confirmPasswordVisible) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.isOtp, isOtp) || other.isOtp == isOtp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, password, phone);
+  int get hashCode => Object.hash(runtimeType, name, password, confirmPassword,
+      passwordVisible, confirmPasswordVisible, phone, isOtp);
 
   /// Create a copy of RegistrationObject
   /// with the given fields replaced by the non-null parameter values.
@@ -324,15 +405,28 @@ class _$RegistrationObjectImpl implements _RegistrationObject {
 
 abstract class _RegistrationObject implements RegistrationObject {
   factory _RegistrationObject(
-          final String name, final String password, final String phone) =
-      _$RegistrationObjectImpl;
+      {required final String name,
+      required final String password,
+      required final String confirmPassword,
+      required final bool passwordVisible,
+      required final bool confirmPasswordVisible,
+      required final String phone,
+      required final bool isOtp}) = _$RegistrationObjectImpl;
 
   @override
   String get name;
   @override
   String get password;
   @override
+  String get confirmPassword;
+  @override
+  bool get passwordVisible;
+  @override
+  bool get confirmPasswordVisible;
+  @override
   String get phone;
+  @override
+  bool get isOtp;
 
   /// Create a copy of RegistrationObject
   /// with the given fields replaced by the non-null parameter values.

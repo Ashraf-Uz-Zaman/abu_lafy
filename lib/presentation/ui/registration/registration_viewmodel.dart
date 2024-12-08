@@ -3,6 +3,8 @@ import 'package:abu_lafy/algo/algo.dart';
 import 'package:abu_lafy/application/functions.dart';
 import 'package:abu_lafy/domain/usecase/registration_usecase.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer.dart';
+import 'package:abu_lafy/presentation/resources/strings_manager.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:flutter/material.dart';
 import 'package:abu_lafy/presentation/common/freezed_data_classes.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
@@ -22,9 +24,9 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
   final StreamController _isPasswordConfirmVisibleStreamController = StreamController<bool>.broadcast();
   final StreamController _isAllInputValidStreamController = StreamController<void>.broadcast();
   final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
-  RegistrationObject registrationObject = RegistrationObject("", "", "");
-  bool isPasswordVisible = true;
-  bool isPasswordConfirmVisible = true;
+
+  final StreamController _isOtpStreamController = StreamController<bool>.broadcast();
+  RegistrationObject registrationObject = RegistrationObject( name: '', password: '', passwordVisible: true, confirmPassword: '', confirmPasswordVisible: true, phone: '',isOtp: false);
   final RegistrationUseCase _useCase;
   /// --- End --- ///
 
@@ -71,6 +73,9 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
 
   @override
   Sink get inputIsAllInputValid => _isAllInputValidStreamController.sink;
+
+  @override
+  Sink get inputIsOtp => _isOtpStreamController.sink;
   /// --- End input --- ///
 
 
@@ -80,39 +85,30 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
   Stream<bool> get outputIsNameValid => _nameStreamController.stream.map((text) => isTextEmpty(text));
 
   @override
-  Stream<bool> get outputIsPasswordValid => _passwordStreamController.stream.map((password) => isPasswordValid(password));
+  Stream<String> get outputIsPasswordValid => _passwordStreamController.stream.map((password) => isPasswordValid(password) ? '':'Must be 6 digit');
 
   @override
-  Stream<bool> get outputIsPasswordConfirmValid => _passwordConfirmStreamController.stream.map((password) => isPasswordValid(password));
+  Stream<String> get outputIsPasswordConfirmValid => _passwordConfirmStreamController.stream.map((password) => isPasswordValid(password)? '':'Must be 6 digit');
 
   @override
-  Stream<bool> get outputIsPhoneValid => _phoneStreamController.stream.map((phone) => isPhoneValid(removeFirstLetter(phone)));
+  Stream<String> get outputIsPhoneValid => _phoneStreamController.stream.map((phone) => isPhoneValid(removeFirstLetter(phone)) ?  '':'Enter a valid phone number',);
 
   @override
-  Stream<bool> get outputIsPasswordVisible => _isPasswordVisibleStreamController.stream.map((visible) => isPasswordVisible);
+  Stream<bool> get outputIsPasswordVisible => _isPasswordVisibleStreamController.stream.map((visible) => visible);
 
   @override
-  Stream<bool> get outputIsPasswordConfirmVisible => _isPasswordConfirmVisibleStreamController.stream.map((visible) => isPasswordConfirmVisible);
+  Stream<bool> get outputIsPasswordConfirmVisible => _isPasswordConfirmVisibleStreamController.stream.map((visible) => visible);
 
   @override
   Stream<bool> get outputIsAllInputsValid =>  _isAllInputValidStreamController.stream.map((_) => _isAllInputsValid());
+
+  @override
+  Stream<bool> get outputIsOtp => _isOtpStreamController.stream.map((value) => value);
   /// --- End output --- ///
 
 
 
   /// --- Start set data --- ///
-  @override
-  setIsPasswordVisible() {
-    isPasswordVisible = !isPasswordVisible;
-    inputIsPasswordVisible.add(isPasswordVisible);
-  }
-
-  @override
-  setIsPasswordConfirmVisible() {
-    isPasswordConfirmVisible = !isPasswordConfirmVisible;
-    inputIsPasswordConfirmVisible.add(isPasswordConfirmVisible);
-  }
-
   @override
   setName(String name) {
     inputName.add(name);
@@ -130,7 +126,20 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
   @override
   setPasswordConfirm(String password) {
     inputPasswordConfirm.add(password);
+    registrationObject = registrationObject.copyWith(confirmPassword: password);
     _validate();
+  }
+
+  @override
+  setIsPasswordVisible() {
+    registrationObject = registrationObject.copyWith(passwordVisible: !registrationObject.passwordVisible);
+    inputIsPasswordVisible.add(registrationObject.passwordVisible);
+  }
+
+  @override
+  setIsPasswordConfirmVisible() {
+    registrationObject = registrationObject.copyWith(confirmPasswordVisible: !registrationObject.confirmPasswordVisible);
+    inputIsPasswordConfirmVisible.add(registrationObject.confirmPasswordVisible);
   }
 
   @override
@@ -139,6 +148,12 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
     registrationObject = registrationObject.copyWith(phone: removeFirstLetter(phone));
     _validate();
   }
+
+  @override
+  setIsOtp() {
+    registrationObject = registrationObject.copyWith(isOtp: !registrationObject.isOtp);
+    inputIsOtp.add(registrationObject.isOtp);
+  }
   /// --- End set data --- ///
   _validate() {
     inputIsAllInputValid.add(null);
@@ -146,8 +161,8 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
 
 
   bool _isAllInputsValid() {
-    return isPasswordValid(registrationObject.password) && isTextEmpty(registrationObject.name) &&
-        isPhoneValid(registrationObject.phone);
+    return isPasswordValid(registrationObject.password) && isPasswordValid(registrationObject.confirmPassword) && isTextEmpty(registrationObject.name) &&
+        isPhoneValid(registrationObject.phone) && registrationObject.password == registrationObject.confirmPassword;
   }
 
   /// --- Start api --- ///
@@ -162,10 +177,12 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
           // inputState.add(ErrorState(
           //     StateRendererType.POPUP_ERROR_STATE, failure.message))
           inputState.add(ContentState()),
+              getFailToast( "${failure.status}  ${failure.message}"),
         }, (data) {
       // right -> success (data)
       // inputState.add(ContentState());
       inputState.add(ContentState());
+      getSucessToast();
       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 
     });

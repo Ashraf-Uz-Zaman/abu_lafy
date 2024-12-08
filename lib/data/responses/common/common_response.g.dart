@@ -1,23 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_response.dart';
+part of 'common_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
-    LoginResponse(
-      json['data'] == null
-          ? null
-          : UserResponse.fromJson(json['data'] as Map<String, dynamic>),
-    )
+CommonResponse _$CommonResponseFromJson(Map<String, dynamic> json) =>
+    CommonResponse()
       ..status = (json['status'] as num?)?.toInt()
       ..message = json['message'] as String?;
 
-Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
+Map<String, dynamic> _$CommonResponseToJson(CommonResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
-      'data': instance.data,
     };

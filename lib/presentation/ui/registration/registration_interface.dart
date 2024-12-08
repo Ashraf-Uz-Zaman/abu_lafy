@@ -7,25 +7,28 @@ abstract class RegistrationViewModelInputs {
   setName(String name);
   setIsPasswordVisible();
   setIsPasswordConfirmVisible();
+  setIsOtp();
 
   void registration(BuildContext context);
 
   //two sinks for streams
+  Sink get inputName;
   Sink get inputPhone;
   Sink get inputPassword;
   Sink get inputPasswordConfirm;
-  Sink get inputName;
-  Sink get inputIsPasswordVisible;
   Sink get inputIsPasswordConfirmVisible;
+  Sink get inputIsPasswordVisible;
   Sink get inputIsAllInputValid;
+  Sink get inputIsOtp;
 }
 
 abstract class RegistrationViewModelOutputs {
-  Stream<bool> get outputIsPhoneValid;
-  Stream<bool> get outputIsPasswordValid;
-  Stream<bool> get outputIsPasswordConfirmValid;
   Stream<bool> get outputIsNameValid;
+  Stream<String> get outputIsPasswordValid;
+  Stream<String> get outputIsPhoneValid;
   Stream<bool> get outputIsPasswordVisible;
+  Stream<String> get outputIsPasswordConfirmValid;
   Stream<bool> get outputIsPasswordConfirmVisible;
   Stream<bool> get outputIsAllInputsValid;
+  Stream<bool> get outputIsOtp;
 }

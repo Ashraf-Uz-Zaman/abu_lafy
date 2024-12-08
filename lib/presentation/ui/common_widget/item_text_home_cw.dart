@@ -46,7 +46,7 @@ class ItemTextHomeCw extends StatelessWidget {
           children: [
             Row(
               children: [
-                getCircularCacheImage(imageUrl ?? '',44.h,44.r),
+                getCircularCacheImage(imageUrl ?? '',44.h,44.w,44.r),
                 SizedBox(
                   width: 10.w,
                 ),

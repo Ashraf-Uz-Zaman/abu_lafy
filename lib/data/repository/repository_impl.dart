@@ -20,11 +20,11 @@ class RepositoryImpl extends Repository {
       );
 
   @override
-  Future<Either<Failure, UserDetailsModel>> login(LoginRequest request) async {
+  Future<Either<Failure, UserModel>> login(LoginRequest request) async {
     if (await _networkInfo.isConnected) {
     try {
       final response = await _remoteDataSource.login(request);
-      if (response.status == 200) {
+      if (response.status == ApiInternalStatus.SUCCESS) {
         return Right(response.data.toDomain());
       } else {
         return Left(Failure( response.status ?? 0,response.message ?? ResponseMessage.DEFAULT));
@@ -61,7 +61,7 @@ class RepositoryImpl extends Repository {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _remoteDataSource.forgot(request);
-        if (response.status == ApiInternalStatus.SUCCESS) {
+        if (response.status  == ApiInternalStatus.SUCCESS) {
           return Right(response.toDomain());
         } else {
           return Left(Failure( response.status ?? 0,response.message ?? ResponseMessage.DEFAULT));
@@ -80,7 +80,7 @@ class RepositoryImpl extends Repository {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _remoteDataSource.home(request);
-        if (response.status == 200) {
+        if (response.status ==  ApiInternalStatus.SUCCESS) {
           return Right((response.data?.map((e) => e.toDomain()) ?? []).cast<PostModel>().toList());
         } else {
           return Left(Failure( response.status ?? 0,response.message ?? ResponseMessage.DEFAULT));

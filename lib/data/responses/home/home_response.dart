@@ -1,5 +1,5 @@
 import 'package:abu_lafy/data/responses/base/base_response.dart';
-import 'package:abu_lafy/data/responses/user/user_details_response.dart';
+import 'package:abu_lafy/data/responses/user/user_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'home_response.g.dart';
 

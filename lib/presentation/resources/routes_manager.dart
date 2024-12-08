@@ -46,6 +46,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ConfirmView());
       case Routes.mainRoute:
         initHomeModule();
+        initMainModule();
 
         return MaterialPageRoute(builder: (_) => const MainView());
 

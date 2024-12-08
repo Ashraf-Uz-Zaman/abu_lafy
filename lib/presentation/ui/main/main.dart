@@ -1,3 +1,6 @@
+import 'package:abu_lafy/application/app_preferences.dart';
+import 'package:abu_lafy/application/dependency_injection.dart';
+import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
@@ -6,6 +9,7 @@ import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/main/event/event.dart';
 import 'package:abu_lafy/presentation/ui/main/home/home.dart';
+import 'package:abu_lafy/presentation/ui/main/main_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/main/profile/profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,25 +24,31 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  final MainViewModel _viewModel = instance<MainViewModel>();
+
   late final HomeView _homeView;
   late final EventView _eventView;
   late final ProfileView _profileView;
   late  List<Widget> pages = [];
 
+
   @override
   void initState() {
+    _viewModel.start();
     _homeView = const HomeView();
     _eventView = const EventView();
-    _profileView = const ProfileView();
+    _profileView = ProfileView(viewModel: _viewModel);
     pages = [
-      _homeView,
+    const Center(
+    child: Text("Home"),
+    ),
 
       const Center(
         child: Text("Message"),
       ),
       _eventView,
      const Center(
-        child: Text("Notifiaction"),
+        child: Text("Notification"),
       ),
       _profileView
     ];
@@ -63,21 +73,32 @@ class _MainViewState extends State<MainView> {
         surfaceTintColor: ColorManager.primary,
         leading: const Image(image: AssetImage(ImageAssets.appbarLogo)),
         actions: [
-          Row(
+          StreamBuilder<UserModel>(
+              stream: _viewModel.outputUserModel,
+              initialData: UserModel(),
+              builder: (context, snapShotUserModel) {
+                try {
+                  print("checked : ${snapShotUserModel.data?.image}" );
+                }catch(e){
+                  print(e);
+                }
+                return  Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(_title,
-                  style: TextStyle(
-                      color: ColorManager.white,
-                      fontSize: 20.sp,
-                      fontFamily: FontConstants.fontFamily,
-                      fontWeight: FontWeightManager.regular)),
+              Text(snapShotUserModel.data?.name ?? '',
+                        style: TextStyle(
+                            color: ColorManager.white,
+                            fontSize: 20.sp,
+                            fontFamily: FontConstants.fontFamily,
+                            fontWeight: FontWeightManager.regular)),
+
+
               Padding(
                 padding: EdgeInsets.only(left: 15.w, right: 20.w),
-                child: getCircularCacheImage( "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyvetnLOz5AF4JPJGxqw0EJpwpBHl9swwqww&s",50.h,50.w),
+                child: getCircularCacheImage( snapShotUserModel.data?.image ?? '',50.h,50.w,50.r),
               ),
-            ],
-          )
+            ],);
+            }),
         ],
       ),
       body: pages[_currentIndex],

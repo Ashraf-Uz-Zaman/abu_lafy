@@ -1,3 +1,7 @@
+
+
+import 'dart:async';
+
 import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
@@ -5,6 +9,7 @@ import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/curve_textformfield_cw.dart';
+import 'package:abu_lafy/presentation/ui/common_widget/otp/otp.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -15,7 +20,7 @@ class RegistrationView extends StatefulWidget {
   const RegistrationView({super.key});
 
   @override
-  _RegistrationViewState createState() => _RegistrationViewState();
+  createState() => _RegistrationViewState();
 }
 
 class _RegistrationViewState extends State<RegistrationView> {
@@ -35,7 +40,7 @@ class _RegistrationViewState extends State<RegistrationView> {
     _passwordController
         .addListener(() => _viewModel.setPassword(_passwordController.text));
     _passwordConfirmController.addListener(
-        () => _viewModel.setPassword(_passwordConfirmController.text));;
+        () => _viewModel.setPasswordConfirm(_passwordConfirmController.text));
 
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((token) {
@@ -44,9 +49,21 @@ class _RegistrationViewState extends State<RegistrationView> {
         // _appPreferences.setUserToken(token);
         // _appPreferences.setIsUserLoggedIn();
         resetModules();
-         Navigator.of(context).pop();
+        _startDelay();
+
       });
     });
+  }
+
+  Timer? _timer;
+
+
+  _startDelay(){
+    _timer = Timer( const Duration(seconds: 2),_goNext);
+  }
+
+  _goNext() {
+    Navigator.of(context).pop();
   }
 
   @override
@@ -58,6 +75,11 @@ class _RegistrationViewState extends State<RegistrationView> {
   @override
   void dispose() {
     _viewModel.dispose();
+    _nameController.dispose();
+    _passwordController.dispose();
+    _passwordConfirmController.dispose();
+    _phoneController.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -73,174 +95,218 @@ class _RegistrationViewState extends State<RegistrationView> {
                   // _viewModel.login(context);
                 }) ??
                 _getContentWidget();
+
           },
         ));
   }
 
-  Widget _getContentWidget() {
-    return SafeArea(
-        child: CustomScrollView(slivers: [
-      SliverFillRemaining(
-        hasScrollBody: true,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Positioned(
-                top: 88.h,
-                left: 23.w,
-                child: Text(AppStrings.createAnAccount,
-                    style: Theme.of(context).textTheme.displayLarge)),
-            Positioned(
-                top: 271.h,
-                left: 24.w,
-                right: 24.w,
-                child: CurveTextFormFieldCW(
-                    controller: _nameController,
-                    inputType: TextInputType.phone,
-                    hints: AppStrings.username,
-                    prefixIcon: ImageAssets.icUser)),
-            Positioned(
-                top: 359.h,
-                left: 24.w,
-                right: 24.w,
-                child: StreamBuilder<bool>(
-                    stream: _viewModel.outputIsPasswordValid,
-                    initialData: true,
-                    builder: (context, snapShotPassword) {
-                      return StreamBuilder<bool>(
-                          stream: _viewModel.outputIsPasswordVisible,
-                          initialData: true,
-                          builder: (context, snapShotVisible) {
-                            return CurveTextFormFieldCW(
-                              controller: _passwordController,
-                              inputType: TextInputType.visiblePassword,
-                              hints: AppStrings.password,
-                              prefixIcon: ImageAssets.icLock,
-                              suffixIcon: ImageAssets.icEye,
-                              errorText: snapShotPassword.data ?? true
-                                  ? null
-                                  : "Must be 6 digit",
-                              obscureText: snapShotVisible.data ?? true,
-                              onTap: () {
-                                _viewModel.setIsPasswordVisible();
-                              },
-                            );
-                          });
-                    })),
-            Positioned(
-                top: 457.h,
-                left: 24.w,
-                right: 24.w,
-                child: StreamBuilder<bool>(
-                    stream: _viewModel.outputIsPasswordConfirmValid,
-                    initialData: true,
-                    builder: (context, snapShotPassword) {
-                      return StreamBuilder<bool>(
-                          stream: _viewModel.outputIsPasswordConfirmVisible,
-                          initialData: true,
-                          builder: (context, snapShotVisible) {
-                            return CurveTextFormFieldCW(
-                              controller: _passwordConfirmController,
-                              inputType: TextInputType.visiblePassword,
-                              hints: AppStrings.password,
-                              prefixIcon: ImageAssets.icLock,
-                              suffixIcon: ImageAssets.icEye,
-                              errorText: snapShotPassword.data ?? true
-                                  ? null
-                                  : "Must be 6 digit",
-                              obscureText: snapShotVisible.data ?? true,
-                              onTap: () {
-                                _viewModel.setIsPasswordConfirmVisible();
-                              },
-                            );
-                          });
-                    })),
-            Positioned(
-                top: 555.h,
-                left: 24.w,
-                right: 24.w,
-                child: CurveTextFormFieldCW(
-                    controller: _phoneController,
-                    inputType: TextInputType.phone,
-                    hints: AppStrings.mobileNumber,
-                    prefixIcon: ImageAssets.icPhone)),
-            Positioned(
-                top: 653.h,
+   _getContentWidget() {
+    return   StreamBuilder<bool>(
+      stream: _viewModel.outputIsOtp,
+      initialData: false,
+      builder: (context, snapShotIsOtp) {
+        return (snapShotIsOtp.data ?? false)
+            ? OtpView(
+          onSubmit: (String value) {
+            _viewModel.setIsOtp();
+            _viewModel.registration(context);
+          },
+        ) :_getScrollWidget();},
+    );
+  }
+
+  Widget _getScrollWidget(){
+    return SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        physics: const BouncingScrollPhysics(),
+        child: SizedBox(
+          height: 840.h,
+          child:  Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Positioned(
+                  top: 88.h,
+                  left: 23.w,
+                  child: Text(AppStrings.createAnAccount,
+                      style: Theme.of(context).textTheme.displayLarge)),
+              Positioned(
+                  top: 271.h,
+                  left: 24.w,
+                  right: 24.w,
+                  child: CurveTextFormFieldCW(
+                      controller: _nameController,
+                      inputType: TextInputType.phone,
+                      hints: AppStrings.username,
+                      prefixIcon: ImageAssets.icUser)),
+              Positioned(
+                  top: 369.h,
+                  left: 24.w,
+                  right: 24.w,
+                  child: _getPasswordWidget()),
+              Positioned(
+                  top: 467.h,
+                  left: 24.w,
+                  right: 24.w,
+                  child: _getConfirmPasswordWidget()),
+              Positioned(
+                  top: 565.h,
+                  left: 24.w,
+                  right: 24.w,
+                  child: _getPhoneWidget()),
+              Positioned(
+                  top: 658.h,
+                  left: 0,
+                  right: 0,
+                  child: _getTermAndConditionWidget() ),
+              Positioned(
+                top: 728.h,
                 left: 0,
                 right: 0,
-                child: Center(
-                    child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: AppStrings.byCreate,
-                          style: TextStyle(
-                              color: ColorManager.white,
-                              fontSize: 14.5.sp,
-                              fontFamily: FontConstants.fontFamily,
-                              fontWeight: FontWeightManager.regular),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: AppStrings.tAndC,
-                              style: TextStyle(
-                                  color: ColorManager.orange_1,
-                                  fontSize: 14.5.sp,
-                                  fontFamily: FontConstants.fontFamily,
-                                  fontWeight: FontWeightManager.regular),
-                            ),
-                            TextSpan(
-                              text: AppStrings.andAgree,
-                              style: TextStyle(
-                                  color: ColorManager.white,
-                                  fontSize: 14.5.sp,
-                                  fontFamily: FontConstants.fontFamily,
-                                  fontWeight: FontWeightManager.regular),
-                            ),
-                            TextSpan(
-                              text: AppStrings.pP,
-                              style: TextStyle(
-                                  color: ColorManager.orange_1,
-                                  fontSize: 14.5.sp,
-                                  fontFamily: FontConstants.fontFamily,
-                                  fontWeight: FontWeightManager.regular),
-                            ),
-                          ],
-                        )))),
-            Positioned(
-              top: 713.h,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: SizedBox(
-                    width: 90.w,
-                    height: 90.h,
-                    child: StreamBuilder<bool>(
-                        stream: _viewModel.outputIsAllInputsValid,
-                        builder: (context, snapshot) {
-                          return IconButton(
-                            onPressed: (snapshot.data ?? false)
-                                ? () {
-                                    //enable
-                                    _viewModel.registration(context);
-                                  }
-                                : () {
-                                    //disable
-                                  },
-                            style: IconButton.styleFrom(
-                                backgroundColor: (snapshot.data ?? false)
-                                    ? ColorManager.orange_1
-                                    : ColorManager.grey1),
-                            icon: SvgPicture.asset(
-                              ImageAssets.icArrowRight,
-                              height: 37.h,
-                              width: 37.w,
-                            ),
-                          );
-                        })),
+                child: _getSubmitButton(),
               ),
-            ),
-          ],
-        ),
-      )
-    ]));
+
+            ],
+          ),
+        ));
   }
+
+
+  _getPasswordWidget(){
+   return StreamBuilder<String>(
+        stream: _viewModel.outputIsPasswordValid,
+        initialData: '',
+        builder: (context, snapShotValid) {
+          return StreamBuilder<bool>(
+              stream: _viewModel.outputIsPasswordVisible,
+              initialData: true,
+              builder: (context, snapShotVisible) {
+                return CurveTextFormFieldCW(
+                  controller: _passwordController,
+                  inputType: TextInputType.visiblePassword,
+                  hints: AppStrings.password,
+                  prefixIcon: ImageAssets.icLock,
+                  suffixIcon: ImageAssets.icEye,
+                  errorText: snapShotValid.data ?? '',
+                  obscureText: snapShotVisible.data ?? true,
+                  onTap: () {
+                    _viewModel.setIsPasswordVisible();
+                  },
+                );
+              });
+        });
+  }
+
+  _getConfirmPasswordWidget(){
+    return StreamBuilder<String>(
+        stream: _viewModel.outputIsPasswordConfirmValid,
+        initialData: '',
+        builder: (context, snapShotPassword) {
+          return StreamBuilder<bool>(
+              stream: _viewModel.outputIsPasswordConfirmVisible,
+              initialData: true,
+              builder: (context, snapShotVisible) {
+                return CurveTextFormFieldCW(
+                  controller: _passwordConfirmController,
+                  inputType: TextInputType.visiblePassword,
+                  hints: AppStrings.confirmPassword,
+                  prefixIcon: ImageAssets.icLock,
+                  suffixIcon: ImageAssets.icEye,
+                  errorText: snapShotPassword.data ?? '',
+                  obscureText: snapShotVisible.data ?? true,
+                  onTap: () {
+                    _viewModel.setIsPasswordConfirmVisible();
+                  },
+                );
+              });
+        });
+  }
+
+  _getPhoneWidget(){
+    return StreamBuilder<String>(
+        stream: _viewModel.outputIsPhoneValid,
+        initialData: '',
+        builder: (context, snapShotPhone) {
+          return  CurveTextFormFieldCW(
+              controller: _phoneController,
+              errorText: snapShotPhone.data,
+              inputType: TextInputType.phone,
+              hints: AppStrings.mobileNumber,
+              prefixIcon: ImageAssets.icPhone);
+
+        });
+  }
+
+  _getTermAndConditionWidget(){
+    return Center(
+        child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: AppStrings.byCreate,
+              style: TextStyle(
+                  color: ColorManager.white,
+                  fontSize: 14.5.sp,
+                  fontFamily: FontConstants.fontFamily,
+                  fontWeight: FontWeightManager.regular),
+              children: <TextSpan>[
+                TextSpan(
+                  text: AppStrings.tAndC,
+                  style: TextStyle(
+                      color: ColorManager.orange_1,
+                      fontSize: 14.5.sp,
+                      fontFamily: FontConstants.fontFamily,
+                      fontWeight: FontWeightManager.regular),
+                ),
+                TextSpan(
+                  text: AppStrings.andAgree,
+                  style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: 14.5.sp,
+                      fontFamily: FontConstants.fontFamily,
+                      fontWeight: FontWeightManager.regular),
+                ),
+                TextSpan(
+                  text: AppStrings.pP,
+                  style: TextStyle(
+                      color: ColorManager.orange_1,
+                      fontSize: 14.5.sp,
+                      fontFamily: FontConstants.fontFamily,
+                      fontWeight: FontWeightManager.regular),
+                ),
+              ],
+            )));
+  }
+
+  _getSubmitButton(){
+    return Center(
+      child: SizedBox(
+          width: 90.w,
+          height: 90.h,
+          child: StreamBuilder<bool>(
+              stream: _viewModel.outputIsAllInputsValid,
+              builder: (context, snapshot) {
+                return IconButton(
+                  onPressed: (snapshot.data ?? false)
+                      ? () {
+                    //enable
+                    //
+                    _viewModel.setIsOtp();
+                  }
+                      : () {
+                    //disable
+                  },
+                  style: IconButton.styleFrom(
+                      backgroundColor: (snapshot.data ?? false)
+                          ? ColorManager.orange_1
+                          : ColorManager.grey1),
+                  icon: SvgPicture.asset(
+                    ImageAssets.icArrowRight,
+                    height: 37.h,
+                    width: 37.w,
+                  ),
+                );
+              })),
+    );
+  }
+
+
 }
