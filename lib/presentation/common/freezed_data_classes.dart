@@ -21,3 +21,8 @@ class ForgetObject with _$ForgetObject {
 class HomeObject with _$HomeObject {
   factory HomeObject(int userId, String content, bool isImage) = _HomeObject;
 }
+
+@freezed
+class PlayerObject with _$PlayerObject {
+  factory PlayerObject(int userId) = _PlayerObject;
+}

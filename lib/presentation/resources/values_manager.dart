@@ -41,6 +41,27 @@ class AppPadding {
 }
 
 class AppSize {
+  // elevated button size
+  static double eb_r = 20.r;
+  static double eb_min_w = 380.w;
+  static double eb_min_h = 77.h;
+
+  // stack position
+  static double sp_82h = 82.h;
+  static double sp_361h = 361.h;
+  static double sp_473h = 473.h;
+  static double sp_687h = 687.h;
+
+
+  // size box size
+  static double sb_10w = 10.w;
+
+
+  // svg size
+  static double svg_89h = 89.01.h;
+  static double svg_25h = 25.h;
+  static double svg_25w = 25.w;
+
   static  double s0 = 0.sp;
   static  double s1 = 1.sp;
   static  double s1_5 = 1.5.sp;

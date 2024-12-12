@@ -10,11 +10,13 @@ import 'package:abu_lafy/domain/repository/repository.dart';
 import 'package:abu_lafy/domain/usecase/forget_usecase.dart';
 import 'package:abu_lafy/domain/usecase/home_usecase.dart';
 import 'package:abu_lafy/domain/usecase/login_usecase.dart';
+import 'package:abu_lafy/domain/usecase/players_usecase.dart';
 import 'package:abu_lafy/domain/usecase/registration_usecase.dart';
 import 'package:abu_lafy/presentation/ui/forget_password/forget_password_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/login/login_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/main/home/home_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/main/main_viewmodel.dart';
+import 'package:abu_lafy/presentation/ui/players/players_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration_viewmodel.dart';
 import 'package:get_it/get_it.dart';
@@ -96,9 +98,18 @@ initHomeModule() {
   }
 }
 
+initPlayersModule() {
+  if (!GetIt.I.isRegistered<PlayersUseCase>()) {
+    instance.registerFactory<PlayersUseCase>(() => PlayersUseCase(instance()));
+    instance.registerFactory<PlayersViewModel>(() => PlayersViewModel(instance()));
+
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
   initLoginModule();
   initRegistrationModule();
+  initPlayersModule();
 }

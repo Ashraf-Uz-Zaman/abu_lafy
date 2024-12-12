@@ -2,11 +2,14 @@ const String IMAGE_PATH = "assets/images";
 const String JSON_PATH = "assets/json";
 
 class ImageAssets {
+  //Splash
   static const String splashLogo = "$IMAGE_PATH/splash_logo.png";
 
+  // Welcome
   static const String onboardingLogo = "$IMAGE_PATH/onboarding_logo.png";
 
-  static const String orLoginWith = "$IMAGE_PATH/or_login_with.png";
+  // Social Login
+  static const String icHorizontalLine = "$IMAGE_PATH/horizontal_line_vector.svg";
   static const String icGoogle = "$IMAGE_PATH/google_vector.svg";
   static const String icApple = "$IMAGE_PATH/apple_vector.svg";
   static const String icFacebook = "$IMAGE_PATH/facebook_vector.svg";

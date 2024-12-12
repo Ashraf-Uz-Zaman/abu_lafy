@@ -2,6 +2,7 @@
 import 'package:abu_lafy/data/responses/base/base_response.dart';
 import 'package:abu_lafy/data/responses/common/common_response.dart';
 import 'package:abu_lafy/data/responses/home/home_response.dart';
+import 'package:abu_lafy/data/responses/player/player_response.dart';
 import 'package:abu_lafy/domain/request/request.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
@@ -41,5 +42,10 @@ abstract class AppServiceClient {
       @Field("User_Id") int User_Id,
       @Field("Content") String Content,
       @Field("Is_Image") bool Is_Image
+      );
+
+  @POST("/player_list")
+  Future<PlayersBaseResponse> players(
+      @Field("user_id") int user_id,
       );
 }

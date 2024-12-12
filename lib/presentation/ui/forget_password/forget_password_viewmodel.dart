@@ -127,7 +127,7 @@ class ForgetViewModel extends BaseViewModel implements ForgetViewModelInputs, Fo
       // inputState.add(ContentState());
       inputState.add(ContentState());
 
-    getSucessToast();
+    getSuccessToast();
       resetValue();
       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 

@@ -19,7 +19,7 @@ import 'main_interface.dart';
 class MainViewModel extends BaseViewModel implements MainViewModelInputs, MainViewModelOutputs {
 
   final StreamController _userModelStreamController = StreamController<UserModel>.broadcast();
-  final AppPreferences _appPreferences = instance<AppPreferences>();
+  final AppPreferences appPreferences = instance<AppPreferences>();
   UserModel userModel = UserModel();
 
 
@@ -46,7 +46,7 @@ class MainViewModel extends BaseViewModel implements MainViewModelInputs, MainVi
 
 
     try{
-      userModel =  await _appPreferences.getUser()  ;
+      userModel =  await appPreferences.getUser()  ;
       _userModelStreamController.add(userModel);
       print(userModel.image);
     }catch(e){

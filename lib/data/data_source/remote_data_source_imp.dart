@@ -4,6 +4,7 @@ import 'package:abu_lafy/data/responses/base/base_response.dart';
 import 'package:abu_lafy/data/responses/home/home_response.dart';
 import 'package:abu_lafy/data/responses/login/login_response.dart';
 import 'package:abu_lafy/data/responses/common/common_response.dart';
+import 'package:abu_lafy/data/responses/player/player_response.dart';
 import 'package:abu_lafy/domain/request/request.dart';
 import 'package:flutter/src/widgets/focus_traversal.dart';
 
@@ -36,6 +37,11 @@ class RemoteDataSourceImplementer implements RemoteDataSource {
   @override
   Future<HomeResponse> home(HomeRequest request) async{
     return await _appServiceClient.home(request.user_id, request.content,request.is_image );
+  }
+
+  @override
+  Future<PlayersBaseResponse> players(PlayersRequest request) async{
+    return await _appServiceClient.players(request.user_id );
   }
 
 }

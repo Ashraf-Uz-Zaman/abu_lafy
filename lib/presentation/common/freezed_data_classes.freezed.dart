@@ -743,3 +743,131 @@ abstract class _HomeObject implements HomeObject {
   _$$HomeObjectImplCopyWith<_$HomeObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$PlayerObject {
+  int get userId => throw _privateConstructorUsedError;
+
+  /// Create a copy of PlayerObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $PlayerObjectCopyWith<PlayerObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlayerObjectCopyWith<$Res> {
+  factory $PlayerObjectCopyWith(
+          PlayerObject value, $Res Function(PlayerObject) then) =
+      _$PlayerObjectCopyWithImpl<$Res, PlayerObject>;
+  @useResult
+  $Res call({int userId});
+}
+
+/// @nodoc
+class _$PlayerObjectCopyWithImpl<$Res, $Val extends PlayerObject>
+    implements $PlayerObjectCopyWith<$Res> {
+  _$PlayerObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of PlayerObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PlayerObjectImplCopyWith<$Res>
+    implements $PlayerObjectCopyWith<$Res> {
+  factory _$$PlayerObjectImplCopyWith(
+          _$PlayerObjectImpl value, $Res Function(_$PlayerObjectImpl) then) =
+      __$$PlayerObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int userId});
+}
+
+/// @nodoc
+class __$$PlayerObjectImplCopyWithImpl<$Res>
+    extends _$PlayerObjectCopyWithImpl<$Res, _$PlayerObjectImpl>
+    implements _$$PlayerObjectImplCopyWith<$Res> {
+  __$$PlayerObjectImplCopyWithImpl(
+      _$PlayerObjectImpl _value, $Res Function(_$PlayerObjectImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PlayerObject
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$PlayerObjectImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PlayerObjectImpl implements _PlayerObject {
+  _$PlayerObjectImpl(this.userId);
+
+  @override
+  final int userId;
+
+  @override
+  String toString() {
+    return 'PlayerObject(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PlayerObjectImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  /// Create a copy of PlayerObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PlayerObjectImplCopyWith<_$PlayerObjectImpl> get copyWith =>
+      __$$PlayerObjectImplCopyWithImpl<_$PlayerObjectImpl>(this, _$identity);
+}
+
+abstract class _PlayerObject implements PlayerObject {
+  factory _PlayerObject(final int userId) = _$PlayerObjectImpl;
+
+  @override
+  int get userId;
+
+  /// Create a copy of PlayerObject
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PlayerObjectImplCopyWith<_$PlayerObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

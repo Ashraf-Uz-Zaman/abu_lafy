@@ -24,11 +24,15 @@ Widget getCircularCacheImage( String imageUrl, double height, double width,doubl
       radius: radius ?? 50.r,
       backgroundColor: Colors.grey,
     ),
-    errorWidget: (context, url, error) => const Icon(Icons.person_2_rounded),
+    errorWidget: (context, url, error) =>CircleAvatar(
+      radius: radius ?? 50.r,
+      backgroundColor: Colors.grey,
+      child: const Icon(Icons.person_2_rounded,color: Colors.white,),
+    ) ,
   );
 }
 
-getSucessToast(){
+getSuccessToast(){
   return Fluttertoast.showToast(
       msg: "Success",
       toastLength: Toast.LENGTH_SHORT,

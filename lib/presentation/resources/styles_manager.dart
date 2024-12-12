@@ -53,16 +53,7 @@ TextStyle getBoldStyle(
 }
 
 
-
-ButtonStyle getElevationButtonStyle({required Color bgColor}) {
-  return ElevatedButton.styleFrom(
-      minimumSize: Size(AppSize.w380,  AppSize.h77),
-      backgroundColor: bgColor,
-      shape: RoundedRectangleBorder(
-        side:BorderSide.none,
-        borderRadius: BorderRadius.circular(20.r),));
-}
-
+// elevated button text style
 TextStyle getElevationButtonTextStyle() {
   return _getTextStyle(FontSize.s20, FontConstants.fontFamily, FontWeightManager.bold, ColorManager.white);
 }

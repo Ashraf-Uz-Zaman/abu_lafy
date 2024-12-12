@@ -161,6 +161,33 @@ class _AppServiceClient implements AppServiceClient {
     return value;
   }
 
+  @override
+  Future<PlayersBaseResponse> players(int user_id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = {'user_id': user_id};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PlayersBaseResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/player_list',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PlayersBaseResponse.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

@@ -33,21 +33,16 @@ class _RegistrationViewState extends State<RegistrationView> {
 
   _bind() {
     _viewModel.start();
-    _nameController
-        .addListener(() => _viewModel.setName(_nameController.text));
-    _phoneController
-        .addListener(() => _viewModel.setPhone(_phoneController.text));
-    _passwordController
-        .addListener(() => _viewModel.setPassword(_passwordController.text));
+    _nameController.addListener(() => _viewModel.setName(_nameController.text));
+    _phoneController.addListener(() => _viewModel.setPhone(_phoneController.text));
+    _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
     _passwordConfirmController.addListener(
         () => _viewModel.setPasswordConfirm(_passwordConfirmController.text));
 
     _viewModel.isUserLoggedInSuccessfullyStreamController.stream
         .listen((token) {
-      // navigate to main screen
+
       SchedulerBinding.instance.addPostFrameCallback((_) {
-        // _appPreferences.setUserToken(token);
-        // _appPreferences.setIsUserLoggedIn();
         resetModules();
         _startDelay();
 
@@ -278,10 +273,7 @@ class _RegistrationViewState extends State<RegistrationView> {
 
   _getSubmitButton(){
     return Center(
-      child: SizedBox(
-          width: 90.w,
-          height: 90.h,
-          child: StreamBuilder<bool>(
+      child:  StreamBuilder<bool>(
               stream: _viewModel.outputIsAllInputsValid,
               builder: (context, snapshot) {
                 return IconButton(
@@ -291,20 +283,18 @@ class _RegistrationViewState extends State<RegistrationView> {
                     //
                     _viewModel.setIsOtp();
                   }
-                      : () {
-                    //disable
-                  },
+                      : null,
                   style: IconButton.styleFrom(
-                      backgroundColor: (snapshot.data ?? false)
-                          ? ColorManager.orange_1
-                          : ColorManager.grey1),
+                    minimumSize: Size(90.w, 90.h),
+                      backgroundColor: ColorManager.orange_1,),
+
                   icon: SvgPicture.asset(
                     ImageAssets.icArrowRight,
                     height: 37.h,
                     width: 37.w,
                   ),
                 );
-              })),
+              }),
     );
   }
 

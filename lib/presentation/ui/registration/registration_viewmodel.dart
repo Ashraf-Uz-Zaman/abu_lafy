@@ -182,7 +182,7 @@ class RegistrationViewModel extends BaseViewModel implements RegistrationViewMod
       // right -> success (data)
       // inputState.add(ContentState());
       inputState.add(ContentState());
-      getSucessToast();
+      getSuccessToast();
       isUserLoggedInSuccessfullyStreamController.add("abcdefgh");
 
     });

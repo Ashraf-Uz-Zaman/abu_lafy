@@ -37,3 +37,10 @@ class HomeRequest {
 
   HomeRequest({required this.user_id,required this.content,required this.is_image});
 }
+
+
+class PlayersRequest {
+  int user_id;
+
+  PlayersRequest({required this.user_id});
+}

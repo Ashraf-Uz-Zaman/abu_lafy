@@ -18,51 +18,41 @@ class SocialLoginCw extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: AppSize.h687,
+        top: AppSize.sp_687h,
         left: 0,
         right: 0,
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image(
-                    width: AppSize.w89_1,
-                    image: const AssetImage(
-                      ImageAssets.orLoginWith,
-                    )),
+                 SvgPicture.asset(ImageAssets.icHorizontalLine,
+                    height: AppSize.svg_89h),
                 Text(
                   AppStrings.orLoginWith,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Image(
-                    width: AppSize.w89_1,
-                    image: const AssetImage(
-                      ImageAssets.orLoginWith,
-                    )),
+                SvgPicture.asset(ImageAssets.icHorizontalLine,height: AppSize.svg_89h
+                   ),
               ],
-            ),
-            SizedBox(
-              height: AppSize.h38,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: onTapGoogle,
-                  child: SvgPicture.asset(ImageAssets.icGoogle,
-                      height: AppSize.h25, width: AppSize.w25),
-                ),
-                SizedBox(width: AppSize.w37_76),
-                GestureDetector(
-                    onTap: onTapApple,
-                    child: SvgPicture.asset(ImageAssets.icApple,
-                        height: AppSize.h25, width: AppSize.w25)),
-                SizedBox(width: AppSize.w37_76),
-                GestureDetector(
-                    onTap: onTapFacebook,
-                    child: SvgPicture.asset(ImageAssets.icFacebook,
-                        height: AppSize.h25, width: AppSize.w25)),
+
+                IconButton(onPressed: onTapGoogle, icon: SvgPicture.asset(ImageAssets.icGoogle,
+                    height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                SizedBox(width: AppSize.sb_10w),
+                IconButton(
+                    onPressed: onTapApple,
+                    icon: SvgPicture.asset(ImageAssets.icApple,
+                        height: AppSize.svg_25h, width: AppSize.svg_25w,)),
+                SizedBox(width:AppSize.sb_10w),
+                IconButton(
+                onPressed: onTapFacebook,
+                icon: SvgPicture.asset(ImageAssets.icFacebook,
+                        height: AppSize.svg_25h, width: AppSize.svg_25w)),
               ],
             )
           ],

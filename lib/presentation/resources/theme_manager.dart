@@ -17,6 +17,7 @@ ThemeData getApplicationTheme() {
       // will be used incase of disabled button for example
       hintColor: ColorManager.grey,
       colorScheme: ColorScheme.fromSwatch(accentColor: ColorManager.grey),
+      scaffoldBackgroundColor: ColorManager.primary,
       // card view theme
       cardTheme: CardTheme(
           color: ColorManager.white,
@@ -40,11 +41,21 @@ ThemeData getApplicationTheme() {
       // elevated button theme
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              textStyle: getRegularStyle(fontSize: FontSize.s20, color: ColorManager.white),
+              minimumSize: Size(AppSize.eb_min_w,  AppSize.eb_min_h),
+              textStyle: getElevationButtonTextStyle(),
+              foregroundColor: ColorManager.white,
               backgroundColor: ColorManager.orange_1,
+
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSize.s20)))),
-    // elevated button theme
+                  side:BorderSide.none,
+                  borderRadius: BorderRadius.circular(AppSize.eb_r)))),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor:ColorManager.white,
+        disabledBackgroundColor: Colors.grey
+      )
+    ),
+    // outlined button theme
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
             textStyle: getRegularStyle(fontSize: FontSize.s12,color: ColorManager.primary),
@@ -52,6 +63,8 @@ ThemeData getApplicationTheme() {
             side: BorderSide(width: 2, color: ColorManager.primary),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSize.s4),))),
+
+
 
 
 

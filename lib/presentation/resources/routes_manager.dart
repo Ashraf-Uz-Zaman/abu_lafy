@@ -1,11 +1,12 @@
 import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/confirm/confirm.dart';
+import 'package:abu_lafy/presentation/ui/edit/edit_profile.dart';
 import 'package:abu_lafy/presentation/ui/forget_password/forget_password.dart';
 import 'package:abu_lafy/presentation/ui/login/login.dart';
 import 'package:abu_lafy/presentation/ui/main/main.dart';
 import 'package:abu_lafy/presentation/ui/onboard/onboard.dart';
-import 'package:abu_lafy/presentation/ui/common_widget/otp/otp.dart';
+import 'package:abu_lafy/presentation/ui/players/players.dart';
 import 'package:abu_lafy/presentation/ui/registration/registration.dart';
 import 'package:abu_lafy/presentation/ui/splash/splash.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,6 +23,8 @@ class Routes {
    static const String confirmRoute = "/confirm";
    static const String mainRoute = "/main";
    static const String eventDetailsRoute = "/main/event_details";
+   static const String editRoute = "/edit";
+   static const String playersRoute = "/players";
    // static const String storDetailsRoute = "/storeDetails";
 }
 
@@ -44,11 +47,17 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
       case Routes.confirmRoute:
         return MaterialPageRoute(builder: (_) => const ConfirmView());
+      case Routes.editRoute:
+        return MaterialPageRoute(builder: (_) => const EditProfileView());
       case Routes.mainRoute:
         initHomeModule();
         initMainModule();
 
         return MaterialPageRoute(builder: (_) => const MainView());
+
+      case Routes.playersRoute:
+        initPlayersModule();
+        return MaterialPageRoute(builder: (_) => const PlayersView());
 
       default:
         return unDefinedRoute();

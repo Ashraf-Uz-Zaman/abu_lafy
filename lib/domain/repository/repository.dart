@@ -2,6 +2,7 @@
 
 import 'package:abu_lafy/data/network/failure.dart';
 import 'package:abu_lafy/domain/model/base_model.dart';
+import 'package:abu_lafy/domain/model/players_model.dart';
 import 'package:abu_lafy/domain/model/post_model.dart';
 import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/domain/request/request.dart';
@@ -12,4 +13,5 @@ abstract class Repository {
   Future <Either<Failure, BaseModel>> registration(RegistrationRequest request);
   Future <Either<Failure, BaseModel>> forgot(ForgotRequest request);
   Future<Either<Failure, List<PostModel>>> home(HomeRequest request);
+  Future<Either<Failure, List<PlayersModel>>> players(PlayersRequest request);
 }

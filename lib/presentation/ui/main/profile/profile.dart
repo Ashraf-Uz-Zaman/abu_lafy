@@ -1,5 +1,6 @@
 import 'package:abu_lafy/application/app_preferences.dart';
 import 'package:abu_lafy/application/dependency_injection.dart';
+import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
@@ -22,6 +23,7 @@ class ProfileView extends StatefulWidget {
 
 class _profileViewState extends State<ProfileView> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
+
   @override
   void initState() {
     super.initState();
@@ -234,26 +236,7 @@ class _profileViewState extends State<ProfileView> {
           ),
         ),
 
-        SizedBox(height: 15.h,),
 
-        Center(
-          child: ElevatedButton(
-
-            style:  getElevationButtonStyle( bgColor: ColorManager.orange_1),
-
-            onPressed: () {
-              _appPreferences.removeUser();
-              _appPreferences.setIsUserLoggedIn(false);
-              Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
-
-
-            },
-
-            child:  Text("Logout", style: getElevationButtonTextStyle(),
-            ),
-          ),
-
-        )
 
       ],
     );

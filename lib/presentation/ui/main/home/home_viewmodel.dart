@@ -39,7 +39,7 @@ class HomeViewModel extends BaseViewModel implements HomeViewModelInputs, HomeVi
 
   @override
   void dispose() {
-
+    inputState.add(ContentState());
   }
 
 
