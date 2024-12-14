@@ -4,8 +4,8 @@ import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/resources/styles_manager.dart';
-import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/item_text_home_cw.dart';
 import 'package:abu_lafy/presentation/ui/main/home/home_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +82,7 @@ class _HomeViewState extends State<HomeView> {
                           height: 34.h,
                           width: double.infinity,
                           child: Text(
-                            "What's on your mind?",
+                            AppStrings.whatOnYourMind,
                             style: TextStyle(
                                 color: ColorManager.grey_whats,
                                 fontSize: 15.sp,

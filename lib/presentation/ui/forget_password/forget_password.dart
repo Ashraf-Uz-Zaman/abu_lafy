@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
@@ -13,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class ForgetPasswordView extends StatefulWidget {
   const ForgetPasswordView({super.key});
@@ -123,7 +121,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       right: 24.w,
                       child: Text(
                         snapShotView.data ?? false
-                            ? "Mobile no : ${_phoneController.text}"
+                            ? "${AppStrings.mobileNo} ${_phoneController.text}"
                             : "",
                         style: TextStyle(
                             color: ColorManager.white,
@@ -168,7 +166,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                           children: [
                             Text(
                                 snapShotView.data ?? false
-                                    ? "Submit"
+                                    ? AppStrings.submit
                                     : AppStrings.sentCode,
                                 style: TextStyle(
                                     color: ColorManager.white,
@@ -189,7 +187,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                           _viewModel.forget(context);
                                         }
                                             : () {
-                                          print("fuck");
+
                                         },
                                         style: IconButton.styleFrom(
                                             backgroundColor:

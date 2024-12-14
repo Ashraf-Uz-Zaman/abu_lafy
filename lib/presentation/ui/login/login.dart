@@ -120,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                         hints: AppStrings.password,
                         prefixIcon: ImageAssets.icLock,
                         suffixIcon: ImageAssets.icEye,
-                        errorText: snapShotPassword.data ?? true ? null: "Must be 6 digit",
+                        errorText: snapShotPassword.data ?? true ? null: AppStrings.passwordLimit,
                         obscureText: snapShotVisible.data ?? true,
                         onTap: () {
                           _viewModel.setIsPasswordVisible();
@@ -168,12 +168,11 @@ class _LoginViewState extends State<LoginView> {
                               onPressed: (snapshot.data ?? false)
                                   ? () {
                                       //enable
+                                FocusManager.instance.primaryFocus?.unfocus();
                                       _viewModel.login(context);
                                // Navigator.pushReplacementNamed(context, Routes.mainRoute);
                                     }
-                                  : () {
-                                      //disable
-                                    },
+                                  : null,
                               style: IconButton.styleFrom(
                                   backgroundColor: (snapshot.data ?? false)
                                       ? ColorManager.seaBuckthorn

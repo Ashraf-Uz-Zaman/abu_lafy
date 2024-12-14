@@ -4,6 +4,7 @@ import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -65,7 +66,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             child: const Icon(Icons.arrow_back,color: Colors.white,),
           ),
 
-          title:  Text('Edit Profile',
+          title:  Text(AppStrings.editProfile,
               style: TextStyle(
                   color: ColorManager.white,
                   fontSize: 20.sp,
@@ -93,17 +94,17 @@ class _EditProfileViewState extends State<EditProfileView> {
 
             children: [
 
-              _getTextFrom("Name",_nameController,1,1),
+              _getTextFrom(AppStrings.name,_nameController,1,1),
 
-              _getTextFrom("Date of birth",_dobController,1,1),
+              _getTextFrom(AppStrings.dob,_dobController,1,1),
 
-              _getTextFrom("Address",_addressController,1,1),
+              _getTextFrom(AppStrings.address,_addressController,1,1),
 
-              _getTextFrom("Country",_countryController,1,1),
+              _getTextFrom(AppStrings.country,_countryController,1,1),
 
-              _getTextFrom("Emergency Contact",_emergencyController,1,1),
+              _getTextFrom(AppStrings.emergencyContract,_emergencyController,1,1),
 
-              _getTextFrom("About",_aboutController,5,5),
+              _getTextFrom(AppStrings.about,_aboutController,5,5),
               SizedBox(height: 35.h,),
               ElevatedButton(
 
@@ -119,7 +120,7 @@ class _EditProfileViewState extends State<EditProfileView> {
 
                 },
 
-                child:  Text("Submit", style: TextStyle(fontSize :FontSize.s16,fontFamily:  FontConstants.fontFamily, fontWeight: FontWeightManager.regular,color:  ColorManager.white),
+                child:  Text(AppStrings.submit, style: TextStyle(fontSize :FontSize.s16,fontFamily:  FontConstants.fontFamily, fontWeight: FontWeightManager.regular,color:  ColorManager.white),
                 ),
               ),
 

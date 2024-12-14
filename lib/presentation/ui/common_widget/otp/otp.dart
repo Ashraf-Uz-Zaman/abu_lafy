@@ -1,11 +1,8 @@
-import 'dart:async';
-
 import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/otp/otp_pin.dart';
-import 'package:abu_lafy/presentation/ui/forget_password/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -35,9 +35,27 @@ class AppStrings {
   static const String usernameError = "invalid_user_name";
   static const String passwordError = "invalid_password";
 
+  static const String playersList = "Players List";
 
 
-  static const String registerText = "register_text";
+  static const String whatOnYourMind = "What's on your mind?";
+
+
+  static const String passwordLimit = "Must be 6 digit";
+  static const String mobileNo = "Mobile no : ";
+  static const String editProfile = "Edit Profile";
+
+  static const String name = "Name";
+  static const String dob = "Date of birth";
+  static const String address = "Address";
+  static const String country = "Country";
+  static const String emergencyContract = "Emergency Contract";
+  static const String about = "About";
+
+  static const String submit = "Submit";
+
+
+
   static const String loading = "loading";
   static const String retry_again = "retry_again";
   static const String ok = "ok";
@@ -58,7 +76,6 @@ class AppStrings {
   static const String services = "services";
   static const String stores = "stores";
   static const String details = "details";
-  static const String about = "about";
   static const String storeDetails = "store_details";
   static const String changeLanguage = "change_language";
   static const String contactUs = "contact_us";

@@ -6,6 +6,7 @@ import 'package:abu_lafy/domain/model/players_model.dart';
 import 'package:abu_lafy/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/players/players_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _PlayersViewState extends State<PlayersView> {
             child: const Icon(Icons.arrow_back,color: Colors.white,),
           ),
 
-          title:  Text('Players List',
+          title:  Text(AppStrings.playersList,
               style: TextStyle(
                   color: ColorManager.white,
                   fontSize: 20.sp,
@@ -93,7 +94,7 @@ class _PlayersViewState extends State<PlayersView> {
 
       StreamBuilder<List<PlayersModel>>(
         stream: _viewModel.outputPlayersList,
-        initialData: [],
+        initialData: const [],
         builder: (context, snapShot) {
       return
 
@@ -130,7 +131,7 @@ class _PlayersViewState extends State<PlayersView> {
                         fontWeight: FontWeightManager.regular),)
                   ],
                 ),
-                Icon(Icons.verified_rounded,color: Colors.greenAccent)
+                const Icon(Icons.verified_rounded,color: Colors.greenAccent)
               ],
             ),),
         );});

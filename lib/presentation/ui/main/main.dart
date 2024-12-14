@@ -6,7 +6,6 @@ import 'package:abu_lafy/presentation/resources/font_manager.dart';
 import 'package:abu_lafy/presentation/resources/routes_manager.dart';
 import 'package:abu_lafy/presentation/ui/common_widget/common.dart';
 import 'package:abu_lafy/presentation/ui/main/event/event.dart';
-import 'package:abu_lafy/presentation/ui/main/home/home.dart';
 import 'package:abu_lafy/presentation/ui/main/main_viewmodel.dart';
 import 'package:abu_lafy/presentation/ui/main/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +26,7 @@ class _MainViewState extends State<MainView> {
   late final EventView _eventView;
   late final ProfileView _profileView;
   late List<Widget> pages = [];
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _MainViewState extends State<MainView> {
     super.dispose();
   }
 
-  var _currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,110 +63,74 @@ class _MainViewState extends State<MainView> {
       appBar: _getAppbar(),
       body: pages[_currentIndex],
       drawer: _getDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: ColorManager.ebony,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _currentIndex,
-        onTap: onTap,
-        items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                ImageAssets.icHome,
-                height: 26.67.h,
-                width: 26.67.w,
-              ),
-              activeIcon: _getActiveIcon(
+      bottomNavigationBar: Card(
+
+        shape: const BeveledRectangleBorder(),
+        color: ColorManager.ebony,
+        elevation: 0,
+        shadowColor: Colors.white,
+
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+
+            InkWell(onTap: (){onTap(0);},
+
+              splashColor: Colors.white12,
+              customBorder:  const CircleBorder(),
+
+
+              child: Padding(padding: EdgeInsets.all(15.r),
+                child: _getIcon( ImageAssets.icHome,_currentIndex == 0),),
+            ),
+            InkWell(onTap: (){onTap(1);},
+              splashColor: Colors.white12,
+              customBorder:  const CircleBorder(),
+
+
+              child: Padding(padding: EdgeInsets.all(15.r),
+                child: _getIcon( ImageAssets.icEvent,_currentIndex == 1),),
+            ),
+            InkWell(onTap: (){onTap(2);},
+              splashColor: Colors.white12,
+              customBorder:  const CircleBorder(),
+
+
+              child: Padding(padding: EdgeInsets.all(12.r),
+                child:
                 SvgPicture.asset(
-                  ImageAssets.icActiveHome,
-                  height: 26.67.h,
-                  width: 26.67.w,
-                ),
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                ImageAssets.icEvent,
-                height: 26.67.h,
-                width: 26.67.w,
-              ),
-              activeIcon: _getActiveIcon(
-                SvgPicture.asset(
-                  ImageAssets.icActiveEvent,
-                  height: 26.67.h,
-                  width: 26.67.w,
-                ),
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                ImageAssets.icPlusCircle,
-                height: 53.67.h,
-                width: 53.67.w,
-              ),
-              activeIcon: SvgPicture.asset(
-                ImageAssets.icActivePlusCircle,
-                height: 53.67.h,
-                width: 53.67.w,
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                ImageAssets.icPerformance,
-                height: 26.67.h,
-                width: 24.w,
-              ),
-              activeIcon: _getActiveIcon(
-                SvgPicture.asset(
-                  ImageAssets.icActivePerformance,
-                  height: 26.67.h,
-                  width: 24.w,
-                ),
-              ),
-              label: ""),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                ImageAssets.icProfile,
-                height: 29.33.h,
-                width: 29.33.w,
-              ),
-              activeIcon: _getActiveIcon(
-                SvgPicture.asset(
-                  ImageAssets.icActiveProfile,
-                  height: 29.33.h,
-                  width: 29.33.w,
-                ),
-              ),
-              label: ""),
-        ],
-      ),
+                              ImageAssets.icPlusCircle,
+                              height: 53.67.h,
+                              width: 53.67.w,
+                  colorFilter: ColorFilter.mode(_currentIndex == 2 ?ColorManager.seaBuckthorn: ColorManager.white, BlendMode.srcIn),
+                            ),
+                 ),),
+            InkWell(onTap: (){onTap(3);},
+              splashColor: Colors.white12,
+              customBorder:  const CircleBorder(),
+
+
+              child: Padding(padding: EdgeInsets.all(15.r),
+                child: _getIcon( ImageAssets.icPerformance,_currentIndex == 3),),
+            ),
+            InkWell(onTap: (){onTap(4);},
+              splashColor: Colors.white12,
+              customBorder:  const CircleBorder(),
+
+
+              child: Padding(padding: EdgeInsets.all(15.r),
+                child: _getIcon( ImageAssets.icProfile,_currentIndex == 4),),
+            ),
+
+          ],
+        ),
+      )
     );
   }
 
-  _getActiveIcon(icon) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        icon,
-        SizedBox(
-          height: 6.67.h,
-        ),
-        SvgPicture.asset(
-          ImageAssets.icDot,
-          height: 8.h,
-          width: 8.w,
-        ),
-      ],
-    );
-  }
 
-  onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+
 
   _getAppbar() {
     return AppBar(
@@ -283,5 +247,35 @@ class _MainViewState extends State<MainView> {
         ],
       ),
     );
+  }
+
+
+  _getIcon(String icon, bool active) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: active ? 7.h : 0,
+      children: [
+        SvgPicture.asset(
+          icon,
+          height: 26.67.h,
+          width: 26.67.w,
+          colorFilter: ColorFilter.mode(active ?ColorManager.seaBuckthorn: ColorManager.white, BlendMode.srcIn),
+        ),
+
+        active ? SvgPicture.asset(
+          ImageAssets.icDot,
+          height: 8.h,
+          width: 8.w,
+        ) : const SizedBox.shrink(),
+      ],
+    );
+  }
+
+  onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

@@ -2,6 +2,7 @@ import 'package:abu_lafy/presentation/resources/assets_manager.dart';
 import 'package:abu_lafy/presentation/resources/strings_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SocialLoginCw extends StatelessWidget {
@@ -40,21 +41,39 @@ class SocialLoginCw extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: AppSize.sb_10w,
+              spacing: 15.w,
               children: [
 
-                IconButton(onPressed: onTapGoogle, icon: SvgPicture.asset(ImageAssets.icGoogle,
-                    height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                InkWell(onTap: onTapGoogle,
+                    splashColor: Colors.white12,
+                    customBorder:  const CircleBorder(),
 
-                IconButton(
-                    onPressed: onTapApple,
-                    icon: SvgPicture.asset(ImageAssets.icApple,
-                        height: AppSize.svg_25h, width: AppSize.svg_25w,)),
 
-                IconButton(
-                onPressed: onTapFacebook,
-                icon: SvgPicture.asset(ImageAssets.icFacebook,
-                        height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                    child: Padding(padding: EdgeInsets.all(10.r),
+                      child: SvgPicture.asset(ImageAssets.icGoogle,
+                          height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                    ),
+
+                InkWell(onTap: onTapApple,
+                  splashColor: Colors.white12,
+                  customBorder:  const CircleBorder(),
+
+
+                  child: Padding(padding: EdgeInsets.all(10.r),
+                      child: SvgPicture.asset(ImageAssets.icApple,
+                          height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                ),
+
+                InkWell(onTap: onTapFacebook,
+                  splashColor: Colors.white12,
+                  customBorder:  const CircleBorder(),
+
+
+                  child: Padding(padding: EdgeInsets.all(10.r),
+                      child: SvgPicture.asset(ImageAssets.icFacebook,
+                          height: AppSize.svg_25h, width: AppSize.svg_25w)),
+                ),
+
               ],
             )
           ],
