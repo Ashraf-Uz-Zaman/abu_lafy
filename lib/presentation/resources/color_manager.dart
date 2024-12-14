@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static Color primary = HexColor.fromHex("#0C0F1B");
-  static Color orange_1 = HexColor.fromHex("#FCA326");
-  static Color yellow_1 = HexColor.fromHex("#F8BD00");
+  //static Color orange_1 = HexColor.fromHex("#FCA326");
   static Color dark_brown_1 = HexColor.fromHex("#474646");
   static Color navyBlue_1 = HexColor.fromHex("#1B2444");
-  static Color hints_grey = HexColor.fromHex("#676767");
-  static Color darkGrey = HexColor.fromHex("#525252");
   static Color grey = HexColor.fromHex("#535767");
-  static Color lightGrey = HexColor.fromHex("#9E9E9E");
+  //static Color lightGrey = HexColor.fromHex("#9E9E9E");
   static Color primaryOpacity70 = HexColor.fromHex("#B3ED9728");
 
   static Color ebony = HexColor.fromHex("#0C0F1B");     // primary
@@ -23,6 +19,7 @@ class ColorManager {
   static Color cloudBurst = HexColor.fromHex("#1B2444");  // Elevation Button Color
   static Color trinidad = HexColor.fromHex("#DF3908");
   static Color cadetBlue = HexColor.fromHex("#99A1BE"); // post write
+  static Color trout = HexColor.fromHex("#535767"); // post and item backrougn color
 
   // new colors
   static Color darkPrimary = HexColor.fromHex("#d17d11");

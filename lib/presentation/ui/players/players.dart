@@ -54,10 +54,7 @@ class _PlayersViewState extends State<PlayersView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.primary,
         appBar: AppBar(
-          backgroundColor: ColorManager.primary,
-          surfaceTintColor: ColorManager.primary,
           leading: InkWell(
             onTap: (){
               Navigator.of(context).pop();

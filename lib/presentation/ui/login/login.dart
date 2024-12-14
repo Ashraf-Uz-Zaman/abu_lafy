@@ -64,7 +64,6 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     // return _getContentWidget();
     return Scaffold(
-        backgroundColor: ColorManager.primary,
         body: StreamBuilder<FlowState>(
           stream: _viewModel.outputState,
           builder: (context, snapshot) {
@@ -164,6 +163,8 @@ class _LoginViewState extends State<LoginView> {
                           stream: _viewModel.outputIsAllInputsValid,
                           builder: (context, snapshot) {
                             return IconButton(
+
+
                               onPressed: (snapshot.data ?? false)
                                   ? () {
                                       //enable
@@ -175,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
                                     },
                               style: IconButton.styleFrom(
                                   backgroundColor: (snapshot.data ?? false)
-                                      ? ColorManager.orange_1
+                                      ? ColorManager.seaBuckthorn
                                       : ColorManager.grey1),
                               icon: SvgPicture.asset(
                                 ImageAssets.icArrowRight,

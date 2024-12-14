@@ -37,7 +37,7 @@ class ItemTextHomeCw extends StatelessWidget {
         ),
         decoration: BoxDecoration(
 
-            color: ColorManager.grey,
+            color: ColorManager.trout,
             borderRadius: BorderRadius.all(Radius.circular(5
                 .r))),
         child: Column(

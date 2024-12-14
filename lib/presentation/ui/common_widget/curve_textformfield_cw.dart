@@ -1,5 +1,6 @@
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
+import 'package:abu_lafy/presentation/resources/styles_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class CurveTextFormFieldCW extends StatelessWidget {
         autofocus: false,
         enabled: enable,
 
-        style: TextStyle(color: ColorManager.black,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
+        style: getTextFormFieldStyle(),
         controller: controller,
         decoration: InputDecoration(
           hintText: hints,

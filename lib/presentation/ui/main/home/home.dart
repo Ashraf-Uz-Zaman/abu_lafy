@@ -182,7 +182,7 @@ class _HomeViewState extends State<HomeView> {
                           fontSize: FontSize.s20,
                           color: ColorManager.white),
                       backgroundColor: ColorManager
-                          .orange_1,
+                          .seaBuckthorn,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius
                               .circular(5.r))),

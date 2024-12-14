@@ -65,3 +65,11 @@ TextStyle getTextStyleBold({required double fontSize}) {
 TextStyle getErrorTextStyle() {
   return _getTextStyle(13.sp, FontConstants.fontFamily, FontWeightManager.light, Colors.red);
 }
+
+TextStyle getTextFormFieldStyle() {
+  return _getTextStyle(FontSize.s14, FontConstants.fontFamily, FontWeightManager.regular, ColorManager.black);
+}
+
+TextStyle getTextFormFieldHintsStyle() {
+  return _getTextStyle(FontSize.s14, FontConstants.fontFamily, FontWeightManager.regular, ColorManager.doveGray);
+}

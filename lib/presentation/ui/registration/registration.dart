@@ -81,8 +81,8 @@ class _RegistrationViewState extends State<RegistrationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.primary,
-        body: StreamBuilder<FlowState>(
+
+        body: SafeArea(child: StreamBuilder<FlowState>(
           stream: _viewModel.outputState,
           builder: (context, snapshot) {
             return snapshot.data?.getScreenWidget(context, _getContentWidget(),
@@ -92,7 +92,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                 _getContentWidget();
 
           },
-        ));
+        )));
   }
 
    _getContentWidget() {
@@ -120,51 +120,41 @@ class _RegistrationViewState extends State<RegistrationView> {
             fit: StackFit.expand,
             children: <Widget>[
               Positioned(
-                  top: 88.h,
+                  top: 80.h,
                   left: 23.w,
                   child: Text(AppStrings.createAnAccount,
                       style: Theme.of(context).textTheme.displayLarge)),
               Positioned(
-                  top: 271.h,
+                  top: 263.h,
                   left: 24.w,
                   right: 24.w,
-                  child: CurveTextFormFieldCW(
-                      controller: _nameController,
-                      inputType: TextInputType.phone,
-                      hints: AppStrings.username,
-                      prefixIcon: ImageAssets.icUser)),
-              Positioned(
-                  top: 369.h,
-                  left: 24.w,
-                  right: 24.w,
-                  child: _getPasswordWidget()),
-              Positioned(
-                  top: 467.h,
-                  left: 24.w,
-                  right: 24.w,
-                  child: _getConfirmPasswordWidget()),
-              Positioned(
-                  top: 565.h,
-                  left: 24.w,
-                  right: 24.w,
-                  child: _getPhoneWidget()),
-              Positioned(
-                  top: 658.h,
-                  left: 0,
-                  right: 0,
-                  child: _getTermAndConditionWidget() ),
-              Positioned(
-                top: 728.h,
-                left: 0,
-                right: 0,
-                child: _getSubmitButton(),
-              ),
+                  child: Column(
+                    spacing: 8.h,
+                    children: [
+                      _getNameWidget(),
+                      _getPasswordWidget(),
+                      _getConfirmPasswordWidget(),
+                      _getPhoneWidget(),
+                      _getTermAndConditionWidget(),
+                      SizedBox(height: 6.h,),
+                      _getSubmitButton()
+                    ],
+                  )),
+
 
             ],
           ),
         ));
   }
 
+  _getNameWidget(){
+    return CurveTextFormFieldCW(
+        controller: _nameController,
+        inputType: TextInputType.phone,
+        hints: AppStrings.username,
+        errorText: '',
+        prefixIcon: ImageAssets.icUser);
+  }
 
   _getPasswordWidget(){
    return StreamBuilder<String>(
@@ -232,8 +222,7 @@ class _RegistrationViewState extends State<RegistrationView> {
   }
 
   _getTermAndConditionWidget(){
-    return Center(
-        child: RichText(
+    return  RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
               text: AppStrings.byCreate,
@@ -246,7 +235,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                 TextSpan(
                   text: AppStrings.tAndC,
                   style: TextStyle(
-                      color: ColorManager.orange_1,
+                      color: ColorManager.amber,
                       fontSize: 14.5.sp,
                       fontFamily: FontConstants.fontFamily,
                       fontWeight: FontWeightManager.regular),
@@ -262,31 +251,28 @@ class _RegistrationViewState extends State<RegistrationView> {
                 TextSpan(
                   text: AppStrings.pP,
                   style: TextStyle(
-                      color: ColorManager.orange_1,
+                      color: ColorManager.amber,
                       fontSize: 14.5.sp,
                       fontFamily: FontConstants.fontFamily,
                       fontWeight: FontWeightManager.regular),
                 ),
               ],
-            )));
+            ));
   }
 
   _getSubmitButton(){
-    return Center(
-      child:  StreamBuilder<bool>(
+    return   StreamBuilder<bool>(
               stream: _viewModel.outputIsAllInputsValid,
               builder: (context, snapshot) {
                 return IconButton(
                   onPressed: (snapshot.data ?? false)
                       ? () {
-                    //enable
-                    //
                     _viewModel.setIsOtp();
                   }
                       : null,
                   style: IconButton.styleFrom(
                     minimumSize: Size(90.w, 90.h),
-                      backgroundColor: ColorManager.orange_1,),
+                      backgroundColor: ColorManager.seaBuckthorn,),
 
                   icon: SvgPicture.asset(
                     ImageAssets.icArrowRight,
@@ -294,7 +280,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     width: 37.w,
                   ),
                 );
-              }),
+              },
     );
   }
 

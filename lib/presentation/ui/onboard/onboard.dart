@@ -49,7 +49,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Positioned(
               top: AppSize.sp_361h,left: 0,right: 0,
                 child : Center(child:  ElevatedButton(
-                    style:  ElevatedButton.styleFrom(backgroundColor: ColorManager.orange_1),
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.loginRoute);
                     },
@@ -61,7 +60,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 top: AppSize.sp_473h,left: 0,right: 0,
                 child : Center(
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: ColorManager.navyBlue_1),
+                      style: ElevatedButton.styleFrom(backgroundColor: ColorManager.cloudBurst),
                       onPressed: () {
                           Navigator.pushNamed(context, Routes.registerRoute);
                       },

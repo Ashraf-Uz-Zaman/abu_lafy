@@ -32,7 +32,6 @@ class _ConfirmViewState extends State<ConfirmView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.primary,
         body: SafeArea(
           child: Stack(
             fit: StackFit.expand,
@@ -91,7 +90,7 @@ class _ConfirmViewState extends State<ConfirmView> {
                       width: 90.w,
                       height: 90.h,
                       child: IconButton(onPressed: (){},
-                        style: IconButton.styleFrom(backgroundColor: ColorManager.orange_1),
+                        style: IconButton.styleFrom(backgroundColor: ColorManager.seaBuckthorn),
                         icon: SvgPicture.asset(ImageAssets.icArrowRight,height: 37.h,width: 37.w,),
                       )),
                 ),

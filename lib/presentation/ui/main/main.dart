@@ -60,13 +60,12 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.primary,
       appBar: _getAppbar(),
       body: pages[_currentIndex],
       drawer: _getDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: ColorManager.primary,
+        backgroundColor: ColorManager.ebony,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _currentIndex,
@@ -171,8 +170,6 @@ class _MainViewState extends State<MainView> {
 
   _getAppbar() {
     return AppBar(
-      backgroundColor: ColorManager.primary,
-      surfaceTintColor: ColorManager.primary,
       // leading: const Image(image: AssetImage(ImageAssets.appbarLogo)),
       iconTheme: const IconThemeData(color: Colors.white),
 
@@ -212,7 +209,7 @@ class _MainViewState extends State<MainView> {
           DrawerHeader(
             margin: EdgeInsets.zero,
             decoration: BoxDecoration(
-              color: ColorManager.primary,
+              color: ColorManager.ebony,
 
             ),
             child: Column(
@@ -239,9 +236,9 @@ class _MainViewState extends State<MainView> {
 
 
           ListTile(
-            leading:  Icon(Icons.verified_user_sharp,color: ColorManager.primary,),
+            leading:  Icon(Icons.verified_user_sharp,color: ColorManager.ebony,),
             title:  Text('Players ',style: TextStyle(
-                color: ColorManager.primary,
+                color: ColorManager.ebony,
                 fontSize: 18.sp,
                 letterSpacing: 0,
                 fontFamily: FontConstants.fontFamily,
@@ -254,9 +251,9 @@ class _MainViewState extends State<MainView> {
           ),
 
           ListTile(
-            leading:  Icon(Icons.edit,color: ColorManager.primary,),
+            leading:  Icon(Icons.edit,color: ColorManager.ebony,),
             title:  Text('Edit Profile ',style: TextStyle(
-    color: ColorManager.primary,
+    color: ColorManager.ebony,
     fontSize: 18.sp,
     letterSpacing: 0,
     fontFamily: FontConstants.fontFamily,
@@ -267,10 +264,10 @@ class _MainViewState extends State<MainView> {
             },
           ),
           ListTile(
-            leading:  Icon(Icons.logout,color: ColorManager.primary,),
+            leading:  Icon(Icons.logout,color: ColorManager.ebony,),
             title: Text('LogOut',
                 style: TextStyle(
-                    color: ColorManager.primary,
+                    color: ColorManager.ebony,
                     fontSize: 18.sp,
                     letterSpacing: 0,
                     fontFamily: FontConstants.fontFamily,

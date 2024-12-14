@@ -119,7 +119,7 @@ class _OtpViewState extends State<OtpView>  {
                         TextSpan(
 
                           text: AppStrings.sendOTP,
-                          style: TextStyle(color: ColorManager.yellow_1,fontSize: 12.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.semiBold),
+                          style: TextStyle(color: ColorManager.amber,fontSize: 12.sp, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.semiBold),
                         ),
 
                       ],

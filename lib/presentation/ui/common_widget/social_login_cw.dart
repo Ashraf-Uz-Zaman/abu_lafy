@@ -39,16 +39,18 @@ class SocialLoginCw extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: AppSize.sb_10w,
               children: [
 
                 IconButton(onPressed: onTapGoogle, icon: SvgPicture.asset(ImageAssets.icGoogle,
                     height: AppSize.svg_25h, width: AppSize.svg_25w)),
-                SizedBox(width: AppSize.sb_10w),
+
                 IconButton(
                     onPressed: onTapApple,
                     icon: SvgPicture.asset(ImageAssets.icApple,
                         height: AppSize.svg_25h, width: AppSize.svg_25w,)),
-                SizedBox(width:AppSize.sb_10w),
+
                 IconButton(
                 onPressed: onTapFacebook,
                 icon: SvgPicture.asset(ImageAssets.icFacebook,

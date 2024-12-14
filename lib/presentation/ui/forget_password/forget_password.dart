@@ -77,7 +77,6 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
     // return _getContentWidget();
 
     return Scaffold(
-        backgroundColor: ColorManager.primary,
         body: StreamBuilder<FlowState>(
           stream: _viewModel.outputState,
           builder: (context, snapshot) {
@@ -195,7 +194,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                         style: IconButton.styleFrom(
                                             backgroundColor:
                                             (snapShotOtp.data ?? false)
-                                                ? ColorManager.orange_1
+                                                ? ColorManager.seaBuckthorn
                                                 : ColorManager.grey),
                                         icon: SvgPicture.asset(
                                           ImageAssets.icArrowRight,
@@ -219,7 +218,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                       style: IconButton.styleFrom(
                                           backgroundColor: (snapShotOtp.data ??
                                               false)
-                                              ? ColorManager.orange_1
+                                              ? ColorManager.seaBuckthorn
                                               : ColorManager.grey),
                                       icon: SvgPicture.asset(
                                         ImageAssets.icArrowRight,

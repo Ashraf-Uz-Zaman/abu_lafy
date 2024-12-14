@@ -8,34 +8,35 @@ import 'package:flutter/material.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
       // main colors of the app
-      primaryColor: ColorManager.primary,
+      primaryColor: ColorManager.ebony,
       primaryColorLight: ColorManager.primaryOpacity70,
       primaryColorDark: ColorManager.darkPrimary,
-      disabledColor: ColorManager.grey1,
+      disabledColor: ColorManager.trout,
       // ripple color
       splashColor: ColorManager.primaryOpacity70,
       // will be used incase of disabled button for example
-      hintColor: ColorManager.grey,
-      colorScheme: ColorScheme.fromSwatch(accentColor: ColorManager.grey),
-      scaffoldBackgroundColor: ColorManager.primary,
+      hintColor: ColorManager.trout,
+      colorScheme: ColorScheme.fromSwatch(accentColor: ColorManager.trout),
+      scaffoldBackgroundColor: ColorManager.ebony,
       // card view theme
       cardTheme: CardTheme(
           color: ColorManager.white,
-          shadowColor: ColorManager.grey,
+          shadowColor: ColorManager.trout,
           elevation: AppSize.s4),
       // App bar theme
       appBarTheme: AppBarTheme(
           centerTitle: true,
-          color: ColorManager.primary,
           elevation: AppSize.s4,
-          shadowColor: ColorManager.primary,
+          shadowColor: ColorManager.ebony,
+          backgroundColor: ColorManager.ebony,
+          surfaceTintColor: ColorManager.ebony,
           titleTextStyle: getRegularStyle(
               color: ColorManager.white, fontSize: FontSize.s20)),
       // Button theme
       buttonTheme: ButtonThemeData(
           shape: const StadiumBorder(),
           disabledColor: ColorManager.grey1,
-          buttonColor: ColorManager.primary,
+          buttonColor: ColorManager.ebony,
           splashColor: ColorManager.primaryOpacity70),
 
       // elevated button theme
@@ -44,7 +45,7 @@ ThemeData getApplicationTheme() {
               minimumSize: Size(AppSize.eb_min_w,  AppSize.eb_min_h),
               textStyle: getElevationButtonTextStyle(),
               foregroundColor: ColorManager.white,
-              backgroundColor: ColorManager.orange_1,
+              backgroundColor: ColorManager.seaBuckthorn,
 
               shape: RoundedRectangleBorder(
                   side:BorderSide.none,
@@ -58,14 +59,11 @@ ThemeData getApplicationTheme() {
     // outlined button theme
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-            textStyle: getRegularStyle(fontSize: FontSize.s12,color: ColorManager.primary),
+            textStyle: getRegularStyle(fontSize: FontSize.s12,color: ColorManager.ebony),
             backgroundColor: ColorManager.white,
-            side: BorderSide(width: 2, color: ColorManager.primary),
+            side: BorderSide(width: 2, color: ColorManager.ebony),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSize.s4),))),
-
-
-
 
 
     /// Text theme
@@ -78,23 +76,23 @@ ThemeData getApplicationTheme() {
         // displayMedium instead headline2
         displayMedium: getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),
         // displaySmall instead headline3
-        displaySmall: getBoldStyle(color: ColorManager.primary, fontSize: FontSize.s16),
+        displaySmall: getBoldStyle(color: ColorManager.ebony, fontSize: FontSize.s16),
 
         // headlineMedium instead headline4
         headlineMedium: getRegularStyle(
             color: ColorManager.white, fontSize: FontSize.s15),
         // titleMedium instead subtitle1
         titleMedium: getMediumStyle(
-            color: ColorManager.lightGrey, fontSize: FontSize.s14),
+            color: ColorManager.trout, fontSize: FontSize.s14),
         // titleSmall instead subtitle2
         titleSmall:
-            getMediumStyle(color: ColorManager.primary, fontSize: FontSize.s14),
+            getMediumStyle(color: ColorManager.ebony, fontSize: FontSize.s14),
 
 
         // bodyMedium instead bodyText2
-        bodyMedium: getRegularStyle(fontSize: FontSize.s12, color: ColorManager.grey),
+        bodyMedium: getRegularStyle(fontSize: FontSize.s12, color: ColorManager.trout),
         // bodySmall instead caption
-        bodySmall: getMediumStyle(color: ColorManager.lightGrey),
+        bodySmall: getMediumStyle(color: ColorManager.trout),
         // bodyLarge instead bodyText1
         bodyLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.white),
       ),
@@ -105,10 +103,10 @@ ThemeData getApplicationTheme() {
       inputDecorationTheme: InputDecorationTheme(
         contentPadding:  EdgeInsets.all(AppPadding.p8),
         // hint style
-        hintStyle: getRegularStyle(fontSize: FontSize.s14, color: ColorManager.hints_grey),
+        hintStyle: getTextFormFieldHintsStyle(),
 
         // label style
-        labelStyle: getMediumStyle(color: ColorManager.darkGrey),
+        labelStyle: getMediumStyle(color: ColorManager.trout),
         // error style
         errorStyle: getErrorTextStyle(),
 
@@ -133,7 +131,7 @@ ThemeData getApplicationTheme() {
           borderRadius: BorderRadius.circular(AppSize.r20),
           borderSide:  BorderSide(
               width: AppSize.w1_5,
-              color: ColorManager.orange_1,
+              color: ColorManager.seaBuckthorn,
               style: BorderStyle.solid
 
           ),
@@ -151,7 +149,7 @@ ThemeData getApplicationTheme() {
           borderRadius: BorderRadius.circular(AppSize.r20),
           borderSide:  BorderSide(
               width: AppSize.w1_5,
-              color: ColorManager.orange_1,
+              color: ColorManager.seaBuckthorn,
               style: BorderStyle.solid
 
           ),

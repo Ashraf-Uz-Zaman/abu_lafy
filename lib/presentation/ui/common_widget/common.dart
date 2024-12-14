@@ -16,7 +16,7 @@ Widget getCircularCacheImage( String imageUrl, double height, double width,doubl
               ,child: CircleAvatar(
             radius: radius ?? 50.r,
             backgroundImage: imageProvider,
-              backgroundColor: ColorManager.orange_1,
+              backgroundColor: ColorManager.seaBuckthorn,
           ),)
 
         ),

@@ -4,9 +4,9 @@ import 'package:abu_lafy/application/dependency_injection.dart';
 import 'package:abu_lafy/domain/model/user_model.dart';
 import 'package:abu_lafy/presentation/resources/color_manager.dart';
 import 'package:abu_lafy/presentation/resources/font_manager.dart';
-import 'package:abu_lafy/presentation/resources/styles_manager.dart';
 import 'package:abu_lafy/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
@@ -57,10 +57,7 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.primary,
         appBar: AppBar(
-          backgroundColor: ColorManager.primary,
-          surfaceTintColor: ColorManager.primary,
           leading: InkWell(
             onTap: (){
               Navigator.of(context).pop();
@@ -89,30 +86,30 @@ class _EditProfileViewState extends State<EditProfileView> {
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
         child: SizedBox(
-          height: 720.h,
+          height: 750.h,
           child: Padding(padding: EdgeInsets.symmetric(horizontal: 24.w,vertical: 34.h),
             child:  Column(
-              spacing: 10.h,
+              spacing: 8.h,
 
             children: [
 
-              _getTextFrom("Name",_nameController),
+              _getTextFrom("Name",_nameController,1,1),
 
-              _getTextFrom("Date of birth",_dobController),
+              _getTextFrom("Date of birth",_dobController,1,1),
 
-              _getTextFrom("Address",_addressController),
+              _getTextFrom("Address",_addressController,1,1),
 
-              _getTextFrom("Country",_countryController),
+              _getTextFrom("Country",_countryController,1,1),
 
-              _getTextFrom("Emergency Contact",_emergencyController),
+              _getTextFrom("Emergency Contact",_emergencyController,1,1),
 
-              _getTextFrom("About",_aboutController),
+              _getTextFrom("About",_aboutController,5,5),
               SizedBox(height: 35.h,),
               ElevatedButton(
 
                 style:  ElevatedButton.styleFrom(
                     minimumSize: Size(AppSize.w380, 45.h),
-                    backgroundColor: ColorManager.orange_1,
+                    backgroundColor: ColorManager.seaBuckthorn,
                     shape: RoundedRectangleBorder(
                       side:BorderSide.none,
                       borderRadius: BorderRadius.circular(8.r),)),
@@ -132,14 +129,18 @@ class _EditProfileViewState extends State<EditProfileView> {
         ));
   }
 
-  _getTextFrom(String value,TextEditingController controller){
+  _getTextFrom(String value,TextEditingController controller,int minLine,int maxLine){
     return TextFormField(
         keyboardType: TextInputType.text,
         controller: controller,
-        minLines: 1,
-        maxLines: 1,
+        minLines: minLine ,
+        maxLines: maxLine ,
         autocorrect: false,
         autofocus: false,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(320),
+        ],
+
 
         style: TextStyle(color: ColorManager.white,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
 
@@ -148,74 +149,37 @@ class _EditProfileViewState extends State<EditProfileView> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle:  TextStyle(color: ColorManager.white,fontSize: FontSize.s14, fontFamily: FontConstants.fontFamily,fontWeight: FontWeightManager.regular),
           // Background Color
+          hintText: value,
 
 
           errorText: '',
 
-          border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.r),
-          borderSide:   BorderSide(
-              width: 1,
-              color: ColorManager.white,
-              style: BorderStyle.solid
-
-          ),
-           ),
-
+          border: _getOutlineInputBorder(),
           // enabled border
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide:   BorderSide(
-                width: 1,
-                color: ColorManager.white,
-                style: BorderStyle.solid
-
-            ),
-          ),
-
+          enabledBorder: _getOutlineInputBorder(),
           // focused border
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide:   BorderSide(
-                width: 1,
-                color: ColorManager.white,
-                style: BorderStyle.solid
-
-            ),
-          ),
+          focusedBorder: _getOutlineInputBorder(),
           // error border
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide:   BorderSide(
-                width: 1,
-                color: ColorManager.white,
-                style: BorderStyle.solid
-
-            ),
-          ),
+          errorBorder: _getOutlineInputBorder(),
           // focused error border
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide:   BorderSide(
-                width: 1,
-                color: ColorManager.white,
-                style: BorderStyle.solid
-
-            ),
-          ),
+          focusedErrorBorder: _getOutlineInputBorder(),
           // focused error border
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide:   BorderSide(
-                width: 1,
-                color: ColorManager.white,
-                style: BorderStyle.solid
-
-            ),
-          ),
+          disabledBorder:_getOutlineInputBorder(),
         ),
         );
 
+  }
+
+  _getOutlineInputBorder(){
+    return  OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8.r),
+      borderSide:   BorderSide(
+          width: 1,
+          color: ColorManager.white,
+          style: BorderStyle.solid
+
+      ),
+    );
   }
 
 }
